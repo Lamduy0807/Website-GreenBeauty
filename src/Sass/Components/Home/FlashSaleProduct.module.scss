@@ -1,0 +1,140 @@
+.fsp {
+  //cardbox
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  vertical-align: top;
+  width: 17%;
+  padding: 0 15px;
+  position: relative;
+  perspective: 150rem;
+  border: 2px solid transparent;
+  height: 32rem;
+  width: 25rem;
+  &__card {
+    // side
+    height: inherit;
+    display: block;
+    border: 2px solid transparent;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all ease-in-out 0.7s;
+    position: absolute;
+    backface-visibility: hidden;
+    overflow: hidden;
+  }
+  &:hover &__front {
+    transform: rotateY(-180deg);
+  }
+  &:hover &__back {
+    transform: rotateY(0);
+    border-color: $main-btn;
+  }
+  &__back {
+    display: block;
+    width: 100%;
+    position: absolute;
+    background-color: $white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: rotateY(180deg);
+    height: 32rem;
+    width: 25rem;
+    &__content {
+      top: 50%;
+      left: 50%;
+      text-align: center;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      &__cta{
+        margin-top: 4rem;
+        text-align: center;
+        color: $textcolor;
+        margin-bottom: 4rem;
+        &--only{
+          font-size: 1.4rem;
+          text-transform: uppercase;
+        }
+        &--value{
+          font-size: 3rem;
+          margin-bottom: 5rem;
+        }
+        &--avg{
+          font-size: 2rem;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+  &__front {
+    width: 100%;
+    position: absolute;
+    &__img {
+      position: relative;
+      display: block;
+      padding-bottom: 100%;
+      width: 100%;
+      overflow: hidden;
+      &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-position: center;
+        object-fit: cover;
+        z-index: 1;
+      }
+    }
+    &__flag {
+      background-color: $main-btn;
+      display: block;
+      z-index: 2;
+      position: absolute;
+      height: 25%;
+      width: 20%;
+      top: 0;
+      right: 0px;
+      text-align: center;
+      color: $white;
+      clip-path: polygon(0 0, 51% 0, 100% 0, 100% 100%, 50% 70%, 0 100%);
+      &__h3 {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+      }
+    }
+  }
+  &__infor {
+    @extend .pro__infor;
+
+    &__h3 {
+      color: $textcolor;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      min-height: calc(4rem);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    &__content {
+      font-size: 1.3rem;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    &__sale {
+      display: flex;
+      font-size: 1.6rem;
+      color: $main-btn;
+    }
+    &__price {
+      text-decoration: line-through;
+      display: flex;
+      &--currency {
+        font-size: 1rem;
+      }
+    }
+  }
+}

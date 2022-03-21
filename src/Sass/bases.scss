@@ -1,0 +1,158 @@
+*,*::before,*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+body{
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: $textcolor;
+    //background-color: $bg;
+    box-sizing: border-box;
+}
+html{
+    font-size: 65.25%;
+    min-height: 100vh;
+}
+.container {
+    width: 100%;
+    //max-width: 1620px;
+    //padding: 0 50px;
+    margin: auto;
+}
+
+.main {
+    margin-top: 1.6rem;
+    margin-bottom: 1rem;
+    min-height: 100vh;
+}
+
+.row{
+    @include clearfix;
+    &:not(:last-child){
+        margin-bottom: $glutter-vertical;
+    }
+    max-width: $gridwidth;
+    margin: 0 auto;
+    // background-color: $lightblue;
+
+    [class^="col-"]{
+        float: left;
+        &:not(:last-child){
+            margin-right: $glutter-horizontal;
+        }
+    }
+}
+.col-1-of-2{
+    width: calc((100% - #{$glutter-horizontal})/ 2);
+}
+.col-1-of-4{
+    width: calc((100% - 3*#{$glutter-horizontal}) / 4);
+}
+.col-1-of-3{
+    width: calc((100% - 2*#{$glutter-horizontal}) / 3);
+}
+
+.center-text{
+    text-align: center !important; 
+}
+
+.margin-bottom-big {
+    margin-bottom: 8rem !important;
+}
+.margin-bottom-small {
+    margin-bottom: 1.5rem !important;
+}
+
+.btn{
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    flex-direction: column;
+    font-size: 14px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 1px 0 rgba($color: #000000, $alpha: .5);
+    border-radius: 2px;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+    outline: 0;
+    cursor: pointer;
+}
+.btn-solid-primary{
+    color: #fff;
+    position: relative;
+    overflow: visible;
+    outline: 0;
+    background: $main-btn;
+} 
+.btn--s{
+    height: 34px;
+    padding: 0 15px;
+    min-width: 60px;
+    max-width: 190px;
+} 
+.btn--inline{
+    display: inline-flex;
+}
+.orange{
+    color: $main-btn;
+}
+
+.avargeSize{
+    font-size: 6rem;
+}
+.smallSize{
+    font-size: 3rem;
+}
+
+.slick-arrow.slick-prev,
+.slick-arrow.slick-next{
+    background: rgba(0,0,0,0.15);
+    width: 2.7rem;
+    height: 7.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+.slick-prev{
+    left: 0;
+    &::before{
+        display: none;
+    }
+}
+.slick-next{
+    right: 0;
+    &::before{
+        display: none;
+    }
+}
+@each $val in $numbers {
+    .grid-col-#{$val} {
+        grid-template-columns: repeat($val, 3fr);
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-md-#{$val} {
+        @include tablet {
+            grid-template-columns: repeat($val, 1fr);
+        }
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-sm-#{$val} {
+        @include mobile {
+            grid-template-columns: repeat($val, 1fr);
+        }
+    }
+}
+.grid {
+    display: grid;
+}
