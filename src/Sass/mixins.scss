@@ -1,0 +1,31 @@
+@mixin clearfix {
+    &::after{
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content;   
+    }
+}
+@mixin animate($animation,$duration,$method,$times){
+    animation: $animation $duration $method $times;
+}
+@mixin animatewithmode($animation,$duration,$method,$times){
+    animation: $animation $duration $method $times;
+    animation-fill-mode: backwards;
+}
+
+@mixin mobile {
+    @media only screen and (max-width: $mobile-width) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: $tablet-width) {
+        @content;
+    }
+}

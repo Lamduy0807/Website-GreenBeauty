@@ -1,0 +1,27 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+@import "./bases.scss";
+
+@import './Components/Header.module.scss';
+@import './Components/Home/Banner.module.scss';
+@import './Components/Home/ButtonSlider.module.scss';
+@import './Components/Home/Product.module.scss';
+@import './Components/Home/FlashSaleProduct.module.scss';
+@import './Components/button.module.scss';
+@import './Components//Home/ListCategories.module.scss';
+@import './Components/Home/Deals.module.scss';
+@import '~slick-carousel/slick/slick.scss'; 
+@import "~slick-carousel/slick/slick-theme.scss";
+@import "./Components/Home/ProductRecommend.module.scss";
+.test{
+    display: block;
+    font-size: 0;
+    letter-spacing: 0;
+    margin: 0 -15px;
+    clear: both;
+
+    &:after{
+        content: '';
+        box-sizing: content-box;
+    }
+}

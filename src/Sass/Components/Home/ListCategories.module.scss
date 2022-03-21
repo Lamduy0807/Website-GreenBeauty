@@ -1,0 +1,37 @@
+.lc{
+    padding: 1rem 0rem;
+    margin-bottom: 2rem;
+    background-color: $white;
+    box-shadow: 0px 3px 5px 0px rgba($color: #000, $alpha: .2);
+    width: 100%;
+    &__container{
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 30%;
+        padding-left: 30%;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    &__list{
+        display: flex;
+        text-align: center;
+        justify-content: space-around;
+        &__img{
+            height: 5rem;
+            width: 5rem;
+        }
+    }
+    &__link{
+        text-decoration: none;
+        color: $textcolor;
+        
+        
+        &:hover .lc__list__img--img {
+            transition: all ease-in .3s; 
+            transform:  scale(1.1);
+        }
+        &:hover{
+            color: $main-bg;
+        }
+    }
+}
