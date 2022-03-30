@@ -1,22 +1,20 @@
 .fsp {
   //cardbox
-  margin-top: 1rem;
   margin-bottom: 1rem;
   display: inline-block;
   vertical-align: top;
-  width: 17%;
-  padding: 0 15px;
   position: relative;
   perspective: 150rem;
   border: 2px solid transparent;
   height: 32rem;
   width: 25rem;
+  background-color: $white;
   &__card {
     // side
     height: inherit;
     display: block;
     border: 2px solid transparent;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
     transition: all ease-in-out 0.7s;
     position: absolute;
     backface-visibility: hidden;

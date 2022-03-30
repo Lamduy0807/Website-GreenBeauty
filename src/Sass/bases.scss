@@ -8,7 +8,7 @@ body{
     font-weight: 400;
     font-size: 1.6rem;
     color: $textcolor;
-    //background-color: $bg;
+    background-color: #F2F1F6;
     box-sizing: border-box;
 }
 html{
@@ -23,7 +23,6 @@ html{
 }
 
 .main {
-    margin-top: 1.6rem;
     margin-bottom: 1rem;
     min-height: 100vh;
 }
@@ -132,6 +131,7 @@ html{
         display: none;
     }
 }
+
 @each $val in $numbers {
     .grid-col-#{$val} {
         grid-template-columns: repeat($val, 3fr);
@@ -156,3 +156,46 @@ html{
 .grid {
     display: grid;
 }
+
+
+.margin-right{
+    margin-right: 1rem;
+}
+.e-date-wrapper span.e-input-group-icon.e-date-icon.e-icons.e-active{
+    color: $main-bg;
+}
+.e-input-group:not(.e-float-icon-left):not(.e-float-input)::before, .e-input-group:not(.e-float-icon-left):not(.e-float-input)::after, .e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::before, .e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::after, .e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::before, .e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::after, .e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::before, .e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::after{
+    background: $main-bg;
+}
+.e-date-wrapper span.e-input-group-icon.e-date-icon.e-icons.e-active{
+    color: $main-bg;
+}
+date-icon.e-icons.e-active{
+    color: $main-bg;
+}
+.e-date-wrapper span.e-input-group-icon.e-date-icon.e-icons.e-active{
+    color: $main-bg;
+}
+.e-calendar {
+    background-color: $main-bg;
+    border: 3px solid #7ec96c;
+}
+.e-calendar .e-content td:hover span.e-day, .e-calendar .e-content td:focus span.e-day, .e-bigger.e-small .e-calendar .e-content td:hover span.e-day, .e-bigger.e-small .e-calendar .e-content td:focus span.e-day {
+    background-color: $main-bg;
+    border: 2px solid;
+    color: #7ec96c;
+}
+.e-calendar .e-btn.e-today.e-flat.e-primary, .e-calendar .e-css.e-btn.e-today.e-flat.e-primary {
+    background-color: $main-bg;
+    border-color: #7ec96c;
+    color: #7ec96c;
+}
+.e-calendar .e-content td.e-focused-date.e-today span.e-day {
+    background-color: $main-btn;
+    color: #fff;
+}
+.e-input-group:not(.e-float-icon-left):not(.e-float-input)::before, .e-input-group:not(.e-float-icon-left):not(.e-float-input)::after, .e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::before, .e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::after, .e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::before, .e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::after, .e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::before, .e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::after{
+    background-color: $main-bg;
+}
+
+

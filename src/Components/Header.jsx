@@ -1,11 +1,32 @@
-import React from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../Context/CartContext/CartContext";
+import { UserContext } from "../Context/UserContext/UserContext";
+import MenuLogin from "./DropdownMenu/MenuLogin";
+import MenuLogout from "./DropdownMenu/MenuLogout";
+const Header = ({open, openRe}) => {
+  const {cartData} = useContext(CartContext);
+  const {userName, token} = useContext(UserContext);
 
-const Header = () => {
-  const Quantity = 2;
-  const name = 'Leo'
+  const [quantity,setQuantity] = useState(0);
+  const [likeList, setLikeList] = useState('');
+
+  useEffect(()=>{
+    setQuantity(cartData.length)
+  },[cartData])
+
+  const renderLikeList = (val) =>{
+    return val? <MenuLogin handleLeave={handleLeave}/> :<MenuLogout open={open} openRe={openRe}/>;
+  }
+  const handleLeave=()=>{
+    setLikeList('')
+  }
+  const handleHover=(val)=>{
+    setLikeList(renderLikeList(val))
+  }
   return (
-    <div className="header">
+    <>
+      <div className="header">
       <div className="header__content">
         <div className="header__logo">
           <div className="header__logo__menu">
@@ -41,18 +62,27 @@ const Header = () => {
             <div className="header__right__item-header header__right__item-header-giohang minicart-wrapper">
                 <Link to='/cart' class="header__right__icon_header">
                     <i class='bx bx-cart-alt header__right__icon_header-icon'></i>
-                    <span className="header__right__icon_header__counter_number">{Quantity}</span>
+                    {
+                      quantity>0?
+                      <span className="header__right__icon_header__counter_number">{quantity}</span>
+                      :
+                      null
+                    } 
                 </Link>
                 <Link to='/cart' class="header__right__txt_gio_hang"> Giỏ <br></br> hàng </Link>
             </div>
-
-            <div className="header__right__item-header header__right__item-header-giohang minicart-wrapper">
-                <Link to='/cart' class="header__right__icon_header">
-                    <i class='bx bx-user header__right__icon_header-icon'></i>
-                </Link>
-                <Link to='/cart' class="header__right__txt_gio_hang"> Chào {name} <br></br> Tài khoản </Link>
+            
+            <div className="header__right__item-header header__right__item-header-giohang minicart-wrapper"
+              onMouseOver={()=>{token===null?handleHover(false): handleHover(true)}} onMouseLeave={handleLeave}>
+                <div className="header__right__icon_header">
+                    <i className='bx bx-user header__right__icon_header-icon'></i>
+                </div>
+                <div className="header__right__txt_gio_hang"> Chào {userName} <br></br> Tài khoản </div>
+                {likeList}
             </div>
-
+            
+            
+            
             <div className="header__right__item-header header__right__item-header-giohang minicart-wrapper">
                 <Link to='/cart' class="header__right__icon_header">
                     <i class='bx bx-analyse header__right__icon_header-icon'></i>
@@ -61,9 +91,10 @@ const Header = () => {
             </div>
         </div>
       </div>
-
       
     </div>
+    </>
+   
   );
 };
 

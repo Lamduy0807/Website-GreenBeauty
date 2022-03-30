@@ -1,0 +1,25 @@
+.menu{
+  position:absolute;
+  box-sizing: border-box;
+  z-index:999;
+  &__container{
+    background:white;
+    padding-top: 1rem;
+    width: 19rem;
+    clip-path: polygon(100% 100%, 0 100%, 0 9%, 45% 9%, 50% 0, 54% 9%, 100% 9%);
+    vertical-align: middle;
+  }
+  &__content{
+    &__item{
+        padding: .5rem;
+        &--link{
+            text-decoration: none;
+            color: $textcolor;
+            margin-top: 1.5rem;
+            &:hover{
+                color: $main-bg;
+            }
+        }
+    }
+}
+}
