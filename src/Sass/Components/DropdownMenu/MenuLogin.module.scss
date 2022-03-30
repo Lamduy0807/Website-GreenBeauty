@@ -2,6 +2,7 @@
   position:absolute;
   box-sizing: border-box;
   z-index:999;
+  border: 1px solid $main-bg;
   &__container{
     background:white;
     padding-top: 1rem;
