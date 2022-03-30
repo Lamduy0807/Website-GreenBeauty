@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Routes from "../Routes/Routes";
 import Header from "./Header";
+import Footer from "./Footer";
 import LoginPopup from "./LoginPopup";
 import RegisterPopup from "./RegisterPopup";
 import UpdateInformation from "./UpdateInformation";
@@ -49,6 +50,7 @@ const Layout = () => {
                       <Routes />
                     </div>
                   </div>
+                  <Footer/>
                 </div>
               )}
             />
