@@ -1,0 +1,37 @@
+.footer{
+    width: 100%;
+    border-top: 5px solid $main-bg;
+    margin-top: 10rem;
+    &__container{
+        padding: 1rem .5rem;
+    }
+    &__h2{
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: rgba(0,0,0,.7);
+        margin-bottom: 1.25rem;
+        margin-top: 2.5rem;
+        text-transform: uppercase;
+    }
+    &__li{
+        text-decoration: none;
+        display: block;
+        color: rgba(0,0,0,.54);
+        list-style-type: none;
+        margin: 0 0 1.5625rem;
+        padding: 0;
+        &:hover{
+            color: $main-bg;
+        }
+    }
+    &__logo{
+        margin-top: 2rem;
+        height: 4.3rem;
+    }
+    &__p{
+        text-align: justify;
+    }
+}
+.text-align{
+   vertical-align: middle;
+}
