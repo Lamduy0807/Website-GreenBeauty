@@ -3,6 +3,7 @@ import ButtonSlider from "./ButtonSlider";
 import { getBanner } from "../../API/Networking";
 import ListCategory from "./ListCategory";
 
+
 const Banner = () => {
   useEffect(() => {
     GetData();

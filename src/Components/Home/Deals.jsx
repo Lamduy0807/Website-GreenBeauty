@@ -9,7 +9,7 @@ const Deals = () => {
     GetData();
   }, []);
 
-  const GetData = () => {
+  const GetData = () => { 
     getProduct().then((re) => {
       re.forEach((item) => {
         if (item.IsFlashsale === true) {
