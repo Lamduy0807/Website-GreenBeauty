@@ -29,9 +29,10 @@ const ProductRecommend = () => {
           <h2 className="pr__title" >Sản phẩm dành cho bạn</h2>
         </div>
 
-        <Link className="pr__product" >
+        <div className="pr__product" >
           <Grid col={5} mdCol={2} smCol={1} gap={10}>
             {product.slice(0,maxRange).map((item, index) => (
+              <Link to={`/product/${item.id}`}  key={index} >
               <Product
                 key={index}
                 src={item.imagepresent}
@@ -39,9 +40,10 @@ const ProductRecommend = () => {
                 price={item.price}
                 sale={item.sold}
               />
+              </Link>
             ))}
           </Grid>
-        </Link>
+        </div>
 
         <div className="pr__button">
           <div className="pr__button__btn"
