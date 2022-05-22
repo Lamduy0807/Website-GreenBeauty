@@ -9,9 +9,7 @@ const FlashSaleProduct = (props) => {
   const [sumValue, setSumValue] = useState(0);
 
   const ref = useRef(null);
-  useEffect(() => {
-    setHeight(ref.current.clientHeight);
-  }, []);
+
 
   useEffect(() => {
     getProductRating(props.id).then((ratings) => {
@@ -56,22 +54,23 @@ const FlashSaleProduct = (props) => {
 
       <div
         className="fsp__card fsp__back fsp__back__ground"
-        style={{ height: height }}
+        //style={{ height: height }}
       >
         <div className="fsp__back__content">
           <div className="fsp__back__content__cta">
-            <p className="fsp__back__content__cta--avg">{props.brand}</p>
-            <p className="fsp__back__content__cta--only">Chỉ còn</p>
-            <p className="fsp__back__content__cta--value orange">
+            <span className="fsp__back__content__cta--avg displayblock">{props.brand}</span>
+            <span className="fsp__back__content__cta--only displayblock">Chỉ còn</span>
+            <span className="fsp__back__content__cta--value orange displayblock">
               {props.sale}
-            </p>
-            <p className="fsp__back__content__cta--only">
+            </span>
+            <span className="fsp__back__content__cta--only displayblock">
               ({numberRating})<br></br>
-              <p className="fsp__back__content__cta--value orange">
+              <span className="fsp__back__content__cta--value orange displayblock">
                 {maxStar.map((item, key) => {
                   return (
                     <i
-                      class={
+                      key={key}
+                      className={
                         item <= sumValue / numberRating
                           ? "bx bxs-star"
                           : "bx bx-star"
@@ -79,10 +78,10 @@ const FlashSaleProduct = (props) => {
                     ></i>
                   );
                 })}
-              </p>
-            </p>
+              </span>
+            </span>
 
-            <Link to={"/cart"} class="btn btn--white btn__animated">
+            <Link to={"/cart"} className="btn btn--white btn__animated">
               Add to Cart
             </Link>
           </div>

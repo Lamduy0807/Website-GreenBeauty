@@ -13,27 +13,27 @@ const MenuLogin = ({handleLeave}) => {
         <div className="menu__content">
           <div className="menu__content__item">
             <Link to='/profile' className="menu__content__item--link">
-              <i class="bx bxs-user-badge margin-right"></i>
+              <i className="bx bxs-user-badge margin-right"></i>
               Tài khoản của bạn
             </Link>
           </div>
 
           <div className="menu__content__item">
             <Link  to='/order-manage' className="menu__content__item--link">
-              <i class="bx bx-receipt margin-right"></i>
+              <i className="bx bx-receipt margin-right"></i>
               Quản lý đơn hàng
             </Link>
           </div>
           <div className="menu__content__item">
             <Link className="menu__content__item--link">
-              <i class="bx bxs-heart margin-right"></i>
+              <i className="bx bxs-heart margin-right"></i>
               Sản phẩm yêu thích
             </Link>
           </div>
           <div className="menu__content__item"
           onClick={()=>{logOut(); getUserInfor(); getCartInformation(); handleLeave();}}>
-            <Link className="menu__content__item--link">
-              <i class="bx bx-log-out margin-right"></i>
+            <Link to={""} className="menu__content__item--link">
+              <i className="bx bx-log-out margin-right"></i>
               Đăng xuất
             </Link>
           </div>

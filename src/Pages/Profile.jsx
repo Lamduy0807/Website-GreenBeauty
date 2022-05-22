@@ -53,7 +53,6 @@ const Profile = () => {
       })
     else
       putUserInformation(ids, token, userData.email, userData.name, userData.phone, checked, convert(userData.dateofbirth), avatar).then(res=>{
-      console.log("result ",res);
     })
     getUserInfor();
   }
@@ -176,7 +175,7 @@ const Profile = () => {
                       src={userData.avt}
                     />
                   </div>
-                  <label for="upload-photo" className="button profile__btn marginBottom2 marginTop">Chọn ảnh</label>
+                  <label htmlFor="upload-photo" className="button profile__btn marginBottom2 marginTop">Chọn ảnh</label>
                   <input 
                   //className="button profile__btn marginBottom2 marginTop"
                   type="file"

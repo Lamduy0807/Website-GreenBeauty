@@ -2,8 +2,8 @@ import React from 'react'
 
 const ButtonSlider = ({moveSlide, direction}) => {
 
-    const left = <i class='bx bx-chevron-left' ></i>
-    const right = <i class='bx bx-chevron-right' ></i>
+    const left = <i className='bx bx-chevron-left' ></i>
+    const right = <i className='bx bx-chevron-right' ></i>
   return (
     <button 
     onClick={moveSlide}

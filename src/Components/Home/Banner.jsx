@@ -36,18 +36,19 @@ const Banner = () => {
           {bannerData.map((img, index) => {
             return (
               <div
+                key={index}
                 className={
                   index === current
                     ? "banner__slide active-anim"
                     : "banner__slide"
                 }
-                key={img.id}
               >
                 {index === current && (
                   <img
                     className="banner__slide__img"
                     src={img.image}
                     alt={"banner" + index}
+                    key={index}
                   />
                 )}
               </div>
@@ -60,7 +61,7 @@ const Banner = () => {
               return (
                 <div
                   onClick={() => moveDot(index)}
-                  key={item.index}
+                  key={index}
                   className={
                     index === current
                       ? "banner__slider__dot-dot banner__slider__dot-dot-active"
