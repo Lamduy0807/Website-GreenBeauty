@@ -84,10 +84,10 @@ const Header = ({open, openRe}) => {
             
             
             <div className="header__right__item-header header__right__item-header-giohang minicart-wrapper">
-                <Link to='/cart' class="header__right__icon_header">
+                <Link to='/analys' class="header__right__icon_header">
                     <i class='bx bx-analyse header__right__icon_header-icon'></i>
                 </Link>
-                <Link to='/cart' class="header__right__txt_gio_hang"> Phân tích <br></br> Thành phần </Link>
+                <Link to='/analys' class="header__right__txt_gio_hang"> Phân tích <br></br> Thành phần </Link>
             </div>
         </div>
       </div>

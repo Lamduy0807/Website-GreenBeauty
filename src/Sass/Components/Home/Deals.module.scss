@@ -5,6 +5,8 @@
         padding: 0rem 4rem;
         width: 100%;
         box-sizing: border-box;
+        max-width: 1490px;
+        margin: auto;
     }
     &__title{
         color: $main-btn;

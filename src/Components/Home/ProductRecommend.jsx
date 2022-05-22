@@ -26,7 +26,7 @@ const ProductRecommend = () => {
     <div className="pr">
       <div className="pr__container">
         <div >
-          <h2 className="pr__title" >Sản phẩm dành cho bạn</h2>
+          <h2 className="pr__title" >gợi ý dành cho bạn</h2>
         </div>
 
         <div className="pr__product" >
