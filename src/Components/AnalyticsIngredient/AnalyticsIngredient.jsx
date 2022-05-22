@@ -90,7 +90,7 @@ const AnalyticsIngredient = () => {
                     setResultData([])
                   }}
                 ></textarea>
-                <i class="bx bxs-info-square ai__input__search--input--infor ai__input__search--input--infor--hashover"></i>
+                <i className="bx bxs-info-square ai__input__search--input--infor ai__input__search--input--infor--hashover"></i>
                 <div className="ai__input__information">
                   <div className="ai__input__information__content">
                     <span>Click icon kính lúp để tìm kiếm chất hóa học</span>
@@ -103,7 +103,7 @@ const AnalyticsIngredient = () => {
                 <button
                  onClick={()=> handleSplitString(ingredients)} 
                  className="button button--circle ai__input__search__button">
-                  <i class="bx bx-search ai__input__text"></i>
+                  <i className="bx bx-search ai__input__text"></i>
                 </button>
                 <button className="button button--circle ai__input__search__button"
                   onClick={()=>{
@@ -115,7 +115,7 @@ const AnalyticsIngredient = () => {
                     setIsShow(false);
                   }}
                 >
-                  <i class="bx bx-x ai__input__text"></i>
+                  <i className="bx bx-x ai__input__text"></i>
                 </button>
               </div>
             </div>
@@ -124,7 +124,7 @@ const AnalyticsIngredient = () => {
             <div className="ai__input__map__container">
               <div className="ai__input__map__title">
                 <h3 className="pr__title">Biểu đồ phân tích</h3>
-                <i class="bx bxs-info-square ai__input__map__icon ai__input__map__icon--hashover"></i>
+                <i className="bx bxs-info-square ai__input__map__icon ai__input__map__icon--hashover"></i>
                 <div className="ai__input__map__infor">
                   <div className="ai__input__map__infor__content">
                     <span>

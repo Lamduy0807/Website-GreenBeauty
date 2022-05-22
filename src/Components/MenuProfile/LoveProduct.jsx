@@ -16,12 +16,12 @@ const LoveProduct = (props) => {
         <div className=" lp__status">
           {props.quantity > 0 ? (
             <div className="lp__status--success ">
-              <i class="bx bx-check"></i>
+              <i className="bx bx-check"></i>
               Còn hàng
             </div>
           ) : (
             <div className="lp__status--unsuccess">
-              <i class="bx bx-x"></i>
+              <i className="bx bx-x"></i>
               Hết hàng
             </div>
           )}

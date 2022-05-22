@@ -46,10 +46,11 @@ const OrderManage = () => {
         </div>
         <div className="odmanage__content">
           <div className="odmanage__content__container">
-            <div class="odmanage__tab">
+            <div className="odmanage__tab">
               {tabs.map((item, index) => {
                 return (
                   <div className="odmanage__tab__container"
+                  key={index}
                   onClick={()=>{setActive(index)}}>
                     <div
                       key={index}
@@ -62,7 +63,7 @@ const OrderManage = () => {
                     >
                       {item.name}
                     </div>
-                    <div class={active===index? "odmanage__tab__line" : null}></div>
+                    <div className={active===index? "odmanage__tab__line" : null}></div>
                   </div>
                 );
               })}

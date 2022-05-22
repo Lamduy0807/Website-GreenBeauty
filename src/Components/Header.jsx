@@ -30,7 +30,7 @@ const Header = ({open, openRe}) => {
       <div className="header__content">
         <div className="header__logo">
           <div className="header__logo__menu">
-            <i class="bx bx-menu"></i>
+            <i className="bx bx-menu"></i>
           </div>
           <div className="header__logo__icon">
             <Link className="header__logo__icon__site" to="/">
@@ -51,17 +51,17 @@ const Header = ({open, openRe}) => {
             </div>
             <button
               type="button"
-              class="btn btn-solid-primary btn--s btn--inline header__search__search-button"
+              className="btn btn-solid-primary btn--s btn--inline header__search__search-button"
             >
-              <i class='bx bx-search-alt-2'></i>
+              <i className='bx bx-search-alt-2'></i>
             </button>
           </div>
         </div>
 
         <div className="header__right">
             <div className="header__right__item-header header__right__item-header-giohang minicart-wrapper">
-                <Link to='/cart' class="header__right__icon_header">
-                    <i class='bx bx-cart-alt header__right__icon_header-icon'></i>
+                <Link to='/cart' className="header__right__icon_header">
+                    <i className='bx bx-cart-alt header__right__icon_header-icon'></i>
                     {
                       quantity>0?
                       <span className="header__right__icon_header__counter_number">{quantity}</span>
@@ -69,7 +69,7 @@ const Header = ({open, openRe}) => {
                       null
                     } 
                 </Link>
-                <Link to='/cart' class="header__right__txt_gio_hang"> Giỏ <br></br> hàng </Link>
+                <Link to='/cart' className="header__right__txt_gio_hang"> Giỏ <br></br> hàng </Link>
             </div>
             
             <div className="header__right__item-header header__right__item-header-giohang minicart-wrapper"
@@ -84,10 +84,10 @@ const Header = ({open, openRe}) => {
             
             
             <div className="header__right__item-header header__right__item-header-giohang minicart-wrapper">
-                <Link to='/analys' class="header__right__icon_header">
-                    <i class='bx bx-analyse header__right__icon_header-icon'></i>
+                <Link to='/analys' className="header__right__icon_header">
+                    <i className='bx bx-analyse header__right__icon_header-icon'></i>
                 </Link>
-                <Link to='/analys' class="header__right__txt_gio_hang"> Phân tích <br></br> Thành phần </Link>
+                <Link to='/analys' className="header__right__txt_gio_hang"> Phân tích <br></br> Thành phần </Link>
             </div>
         </div>
       </div>

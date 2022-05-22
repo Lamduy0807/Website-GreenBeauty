@@ -23,7 +23,7 @@ const Deals = () => {
     const { className, style, onClick } = props;
     return (
       <div className={"ButtonSlider next"} onClick={onClick}>
-        <i class="bx bx-chevron-right"></i>
+        <i className="bx bx-chevron-right"></i>
       </div>
     );
   };
@@ -32,7 +32,7 @@ const Deals = () => {
     const { className, style, onClick } = props;
     return (
       <div className={"ButtonSlider prev"} onClick={onClick}>
-        <i class="bx bx-chevron-left"></i>
+        <i className="bx bx-chevron-left"></i>
       </div>
     );
   };
@@ -49,18 +49,18 @@ const Deals = () => {
       <div className="deal__container">
         <div className="deal__title">
           <div className="deal__title__left">
-            <i class="bx bxs-zap smallSize"></i>
+            <i className="bx bxs-zap smallSize"></i>
             <h2 className="deal__title__left--h2">Deals đang diễn ra</h2>
           </div>
           <div className="deal__title__right">
-            <Link className="deal__title__right--btn">Xem tất cả</Link>
+            <Link to={'/'} className="deal__title__right--btn">Xem tất cả</Link>
           </div>
         </div>
         <div className="deal__fl">
           <Slider {...settings}>
             {flProduct.map((item, index) => {
               return (
-                <div>
+                <div key={index}>
                   <FlashSaleProduct
                     name={item.name}
                     price={item.price}

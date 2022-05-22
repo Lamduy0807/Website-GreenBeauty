@@ -125,7 +125,7 @@ const Address = () => {
                           {item.phone}
                         </div>
                         <div className="address__detail__btn">
-                          <i class="bx bx-edit-alt address__detail__btn--btn"></i>
+                          <i className="bx bx-edit-alt address__detail__btn--btn"></i>
                         </div>
                       </div>
                     </div>

@@ -34,7 +34,6 @@ const ProductRecommend = () => {
             {product.slice(0,maxRange).map((item, index) => (
               <Link to={`/product/${item.id}`}  key={index} >
               <Product
-                key={index}
                 src={item.imagepresent}
                 name={item.name}
                 price={item.price}

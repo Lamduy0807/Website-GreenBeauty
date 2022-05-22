@@ -7,7 +7,7 @@ const ListCategory = () => {
         <div className="lc__container">
             <div className="lc__list">
                 <div className="lc__list__deal">
-                    <Link className='lc__link'>
+                    <Link to={'/'} className='lc__link'>
                         <span className='lc__list__img'>
                             <img className='lc__list__img--img' src={'https://hasaki.vn/img/hsk/icon/deals.svg'}/>
                         </span>
@@ -15,7 +15,7 @@ const ListCategory = () => {
                     </Link>
                 </div>
                 <div className="lc__list__special">
-                    <Link className='lc__link'>
+                    <Link to={'/'} className='lc__link'>
                         <span className='lc__list__img'>
                             <img className='lc__list__img--img' src={'https://hasaki.vn/img/hsk/icon/special.svg'}/>
                         </span>
@@ -23,7 +23,7 @@ const ListCategory = () => {
                     </Link>
                 </div>
                 <div className="lc__list__freeship">
-                    <Link className='lc__link'>
+                    <Link to={'/'} className='lc__link'>
                         <span className='lc__list__img'>
                             <img className='lc__list__img--img' src={'https://hasaki.vn/img/hsk/icon/now-free.svg'}/>
                         </span>
@@ -31,7 +31,7 @@ const ListCategory = () => {
                     </Link>
                 </div>
                 <div className="lc__list__fs">
-                    <Link className='lc__link'>
+                    <Link to={'/'} className='lc__link'>
                         <span className='lc__list__img'>
                             <img className='lc__list__img--img' src={'https://hasaki.vn/img/hsk/icon/flash-deal.svg'}/>
                         </span>
