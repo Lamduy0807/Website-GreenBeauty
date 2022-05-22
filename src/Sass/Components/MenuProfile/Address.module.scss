@@ -1,0 +1,176 @@
+.address {
+    @extend .profile;
+
+    &__container {
+        @extend .profile__container;
+    }
+
+    &__content {
+        background-color: $white;
+        flex: 1;
+        width: 100%;
+        margin-top: 1rem;
+
+        &__container {
+            padding: 1rem;
+            box-shadow: 1px 1px 1px 1px rgba($black, .3);
+        }
+    }
+
+    &__headerbar {
+        display: flex;
+        border-bottom: 1px solid rgba($textcolor, .3);
+
+        &__content {
+            padding: .7rem;
+            color: rgba($black, .8);
+            font-weight: 600;
+            font-size: 1.5rem;
+
+            &--fulladd {
+                flex: .45;
+            }
+
+            &--name {
+                flex: .25;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &--phone {
+                flex: .25;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &--edit {
+                flex: .05;
+            }
+        }
+    }
+
+    &__detail {
+        width: 100%;
+
+        &__container {
+            padding: .7rem;
+            display: flex;
+        }
+
+        &__add {
+            flex: .45;
+        }
+
+        &__name {
+            flex: .25;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__btn {
+            flex: .05;
+            color: $main-bg;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &--btn{
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__noadd {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        text-transform: uppercase;
+
+    }
+
+    &__addaddress {
+        background-color: $white;
+        padding: 1rem;
+        font-size: 1.5rem;
+
+        &__btn {
+            color: $main-bg;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__addnewcontainer {
+        margin: 1rem 1rem 0 1rem;
+        display: flex;
+
+        &__left {
+            flex: .5;
+        }
+
+        &__right {
+            flex: .5;
+        }
+
+        &__form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0 0 0 .6rem;
+
+            &__text {
+                color: rgba($black, .8);
+                font-weight: bold;
+            }
+
+            &__input {
+                width: 100%;
+
+                &--input {
+                    margin-top: .5rem;
+                    background-clip: padding-box;
+                    border: 1px solid #c2c2c2;
+                    border-radius: 1px;
+                    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                    font-size: 1.4rem;
+                    line-height: 1.9;
+                    padding: 0px 9px;
+                    vertical-align: baseline;
+                    width: 95%;
+                    box-sizing: border-box;
+                    margin-bottom: 2rem;
+                }
+            }
+            &--right{
+                margin-bottom: 2rem;
+                width: 95%;
+            }
+        }
+        &__groupbtn{
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 5%;
+            &__btn{
+                margin-left: 1rem;
+                border-radius: 3px;
+                &--cancel{
+                    padding: 1rem 2rem;
+                    color: $textcolor;
+                    border:1px solid rgba($black, .3);
+                }
+                &--update{
+                    padding: 1rem 1.5rem;
+                    color: $white;
+                    border: none;
+                    background-color: $main-bg;
+                }
+            }
+        }
+    }
+}

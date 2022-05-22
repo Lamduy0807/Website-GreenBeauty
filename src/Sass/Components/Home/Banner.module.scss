@@ -1,11 +1,15 @@
 .banner {
   width: 100%;
-  padding: 1rem 15rem;
+  padding: 1rem 1rem;
   position: relative;
   display: flex;
   background-color: $white;
   &__container{
     width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
     box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0.2);
   }

@@ -1,0 +1,54 @@
+.ll{
+    @extend .profile;
+    &__container{
+        @extend .profile__container;
+    }
+    &__content{
+        background-color: $white;
+        flex: 1;
+        width: 100%;
+        margin-top: 1rem;
+        &__container{
+            padding: 1rem;
+            box-shadow: 1px 1px 1px 1px rgba($black, .3);
+            //margin-left: .2rem;
+        }
+    }
+    &__header{
+        margin: 0 0 0 1.5rem;
+        &__text{
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    }
+    &__lovelist{
+        margin: 3rem 1rem 1rem 1rem;
+        border: 1px solid rgba($textcolor, .3);
+    }
+    &__headerbar{
+        display: flex;
+        border-bottom: 1px solid rgba($textcolor, .3) ;
+        &__content{
+            padding: .7rem;
+            color: rgba($black, .8);
+            font-weight: 600;
+            font-size: 1.5rem;
+            &--name{
+                flex: .5;
+            }
+            &--status{
+                flex: .15;
+                display: flex;
+                justify-content: center;
+            }
+            &--price{
+                flex: .15;
+                display: flex;
+                justify-content: center;
+            }
+            &--none{
+                flex: .2;
+            }
+        }
+    }
+}

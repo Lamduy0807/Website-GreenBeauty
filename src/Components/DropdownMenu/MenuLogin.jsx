@@ -12,14 +12,14 @@ const MenuLogin = ({handleLeave}) => {
       <div className="menu__container">
         <div className="menu__content">
           <div className="menu__content__item">
-            <Link className="menu__content__item--link">
+            <Link to='/profile' className="menu__content__item--link">
               <i class="bx bxs-user-badge margin-right"></i>
               Tài khoản của bạn
             </Link>
           </div>
 
           <div className="menu__content__item">
-            <Link className="menu__content__item--link">
+            <Link  to='/order-manage' className="menu__content__item--link">
               <i class="bx bx-receipt margin-right"></i>
               Quản lý đơn hàng
             </Link>

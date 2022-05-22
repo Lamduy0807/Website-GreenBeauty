@@ -4,6 +4,7 @@ import { getUserInformation } from '../../API/Networking';
 const UserProvider = ({children}) => {
 
   const [userData, setUserData] = useState();
+  const [userAvt, setUserAvt] = useState('');
   const [userName, setUserName] = useState("")
   const [showUpdate, setShowUpdate] = useState(false);
   const [token, setToken] = useState("")
@@ -18,6 +19,7 @@ const UserProvider = ({children}) => {
             if(id>0)
                 getUserInformation(id,tokens).then(res=>{
                     setUserData(res)
+                    setUserAvt(res.avt)
                     if(res.name === null)
                     {
                       setShowUpdate(true);
@@ -41,7 +43,7 @@ const UserProvider = ({children}) => {
     }
     
   return (
-    <UserContext.Provider value={{userData,setUserData, getUserInfor, userName,showUpdate, setShowUpdate, token}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{userAvt, userData,setUserData, getUserInfor, userName,showUpdate, setShowUpdate, token}}>{children}</UserContext.Provider>
   )
 }
 
