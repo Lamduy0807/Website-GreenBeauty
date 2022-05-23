@@ -253,3 +253,41 @@ date-icon.e-icons.e-active{
 .displayblock{
     display: block;
 }
+.padding1rem
+{
+    padding: 2rem 0 2rem 0;
+}
+.boxshadow{
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+.colorMain{
+    color: $main-bg;
+}
+.colorBtn{
+    color: $main-btn;
+}
+.colorBlue{
+    color: $blue;
+}
+.colorYellow{
+    color: $yellow;
+}
+.colorMiner{
+    color: $miner
+}
+
+.bgcolorMain{
+    background-color: $main-bg;
+}
+.bgcolorBtn{
+    background-color: $main-btn;
+}
+.bgcolorBlue{
+    background-color: $blue;
+}
+.bgcolorYellow{
+    background-color: $yellow;
+}
+.bgcolorMiner{
+    background-color: $miner
+}

@@ -405,7 +405,58 @@ async function putCanceDlelivery(id) {
     console.error(`Error is: ${error}`);
   }
 }
+async function getTypeOfCategory() {
+  const apiGetType = 'http://' + SERVER_NAME + '/type/';
+  try {
+    let response = await fetch(apiGetType, {
+      method: 'GET',
+    });
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
 
+//Api get category
+async function getCategory(type_id) {
+  const apiGetCategory = 'http://' + SERVER_NAME + '/category/?producttype=' + type_id;
+  try {
+    let response = await fetch(apiGetCategory, {
+      method: 'GET',
+    });
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
+async function getAllCategory() {
+  const apiGetAllCategory = 'http://' + SERVER_NAME + '/category/';
+  try {
+    let response = await fetch(apiGetAllCategory, {
+      method: 'GET',
+    });
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
+async function getProductByCategory(category) {
+  const apiGetProductByCategory=
+    'http://' + SERVER_NAME + '/product/?category=' + category ;
+  try {
+    let response = await fetch(apiGetProductByCategory, {
+      method: 'GET',
+    });
+    let responseJson = await response.json();
+    // console.log("category:", responseJson)
+    return responseJson;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
 export {
   putCanceDlelivery,
   putConfirmDelivery,
@@ -428,4 +479,8 @@ export {
   getUserInformation,
   putUpdateUserInformation,
   getIngredientInformation,
+  getTypeOfCategory,
+  getCategory,
+  getProductByCategory,
+  getAllCategory
 };

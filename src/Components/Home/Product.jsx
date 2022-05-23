@@ -14,8 +14,8 @@ const Product = (props) => {
             <br></br>
             <div className="pro__infor__content">
               <div className="pro__infor__price">
-                  {props.price}
-                  <div className='pro__infor__price--currency'>đ</div> 
+                  {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(props.price)}
+                  {/* <div className='pro__infor__price--currency'>đ</div>  */}
               </div>
 
               <div className="pro__infor__sale">
