@@ -1,0 +1,58 @@
+.sidemenu{
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    &__container
+    {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    &__left{
+        animation: Grow ease-in .3s;
+        width: 300px;
+        position: absolute;
+        background-color: white;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        &__head{
+            padding: 1rem;
+            background-color: $main-bg;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &--right{
+                display: flex;
+                align-items: center;
+                &--h3{
+                    margin-left: 1rem;
+                    color: $white;
+                }
+            }
+            &--icon{
+                color: $white;
+                font-size: 2.5rem;
+                cursor: pointer;
+            }
+        }
+        &__footer{
+            overflow-y: scroll;
+        }
+    }
+    // &__right{
+    //     flex: .8;
+
+    // }
+}
+
+@keyframes Grow{
+    from{
+        left: -300px;
+    }
+    to{
+        left: 0;
+    }
+}
