@@ -11,6 +11,7 @@ import AuthProvider from "../Context/AuthContext/AuthProvider";
 import CartProvider from "../Context/CartContext/CartProvider";
 import UserProvider from "../Context/UserContext/UserProvider";
 import ModalProvider from "../Context/ModelContext/ModalProvider";
+import SideMenu from "./SideMenu";
 const Layout = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -33,6 +34,7 @@ const Layout = () => {
                 <div>
                   <UpdateInformation/>
                   <IngredientDetailModal/>
+                  <SideMenu/>
                   <LoginPopup
                     showLogin={showLogin}
                     setShowLogin={setShowLogin}

@@ -4,9 +4,11 @@ import { CartContext } from "../Context/CartContext/CartContext";
 import { UserContext } from "../Context/UserContext/UserContext";
 import MenuLogin from "./DropdownMenu/MenuLogin";
 import MenuLogout from "./DropdownMenu/MenuLogout";
+import { ModalContext } from "../Context/ModelContext/ModalContext";
 const Header = ({open, openRe}) => {
   const {cartData} = useContext(CartContext);
   const {userName, token} = useContext(UserContext);
+  const { setShowMenu } = useContext(ModalContext);
 
   const [quantity,setQuantity] = useState(0);
   const [likeList, setLikeList] = useState('');
@@ -30,7 +32,7 @@ const Header = ({open, openRe}) => {
       <div className="header__content">
         <div className="header__logo">
           <div className="header__logo__menu">
-            <i className="bx bx-menu"></i>
+            <i onClick={()=>setShowMenu(prev=>!prev)} className="bx bx-menu cursor"></i>
           </div>
           <div className="header__logo__icon">
             <Link className="header__logo__icon__site" to="/">

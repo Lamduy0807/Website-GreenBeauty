@@ -1,0 +1,40 @@
+.menucompo
+{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  &__submenu{
+    width: 100%;
+    padding: 1rem;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__name{
+      color: rgba($color: $black, $alpha: .7);
+    }
+    &__i{
+      color: rgba($color: $black, $alpha: .7);
+      align-items: center;
+      display: flex;
+      font-size: 2rem;
+    }
+    &:hover{
+      background-color: rgba($color: $main-bg, $alpha: .1);
+    }
+    &:hover .menucompo__submenu__name{
+      color: $main-bg;
+    }
+    &:hover .menucompo__submenu__i{
+      color: $main-bg;
+    }
+  }
+  &__h3{
+    color: rgba($color: $black, $alpha: .8);
+    padding-left: .5rem;
+    margin-top: 1rem;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}
