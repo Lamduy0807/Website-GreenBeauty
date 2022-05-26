@@ -18,7 +18,7 @@ const Product = (props) => {
                   {/* <div className='pro__infor__price--currency'>đ</div>  */}
               </div>
 
-              <div className="pro__infor__sale">
+              <div className="pro__infor__sale decoratenone">
                   Đã bán: {props.sale}
               </div>
             </div>

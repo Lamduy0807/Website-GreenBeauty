@@ -1,0 +1,30 @@
+.cateind{
+    width: 100%;
+    padding: 1rem;
+    &__container{
+        background-color: #EAEAEA;
+        width: 100%;
+        padding: .5rem 0 .5rem 1rem;
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+    &__chossen{
+        padding: .5rem;
+        margin-left: 1rem;
+        border: 1px solid  rgba($textcolor, .2);
+        background-color: $white;
+        color: rgba($black, .9);
+        border-radius: 5px;
+        cursor: pointer;
+        &--active{
+            background-color: $main-bg;
+            border: none;
+            color: $white;
+        }
+    }
+    &__title{
+        color: rgba($black, .9);
+        margin: 0 0 1rem .5rem;
+    }
+}
