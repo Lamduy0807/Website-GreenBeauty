@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import { getCategory } from '../../API/Networking'
+import { toSlug } from '../../Function/Function'
 const MenuComponent = (props) => {
     const [submenu, setSubmenu] = useState([])
     useEffect(()=>{
@@ -14,7 +15,7 @@ const MenuComponent = (props) => {
       }
     const Sub = (props) =>{
         return(
-            <NavLink activeStyle={activeStyle} to={'/asd'} className="menucompo__submenu">
+            <NavLink activeStyle={activeStyle} to={'/categories/'+ props.id + '/'+toSlug(props.name)} className="menucompo__submenu">
                 <div className="menucompo__submenu__name">{props.name}</div>
                 <i className='bx bx-chevron-right menucompo__submenu__i'></i>
             </NavLink>
@@ -26,7 +27,7 @@ const MenuComponent = (props) => {
         {
             submenu.map((item, index)=>{
                 return(
-                    <Sub key={index} name={item.name}/>
+                    <Sub key={index} id={item.id} name={item.name}/>
                 )
             })
         }

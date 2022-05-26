@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Grid from '../Grid'
 import { Link } from 'react-router-dom'
 import { getAllCategory } from '../../API/Networking'
+import { toSlug } from '../../Function/Function'
 const CategoriesList = () => {
     const [categories, setCategories] = useState([])
     useEffect(()=>{
@@ -12,7 +13,7 @@ const CategoriesList = () => {
 
   const Cate = (props) =>{
       return(
-          <Link to={'/'} className="catelist__cate">
+          <Link to={'/categories/'+ props.id + '/'+toSlug(props.name)} className="catelist__cate">
               <img className="catelist__cate__img" src={props.src}/>
               <div className="catelist__cate__name">{props.name}</div>
           </Link>
@@ -29,7 +30,7 @@ const CategoriesList = () => {
                     {
                         categories.slice(0, categories.length-1).map((item, index)=>{
                             return(
-                                <Cate key={index} src={item.imagecategory} name={item.name}/>
+                                <Cate key={index} id={item.id} src={item.imagecategory} name={item.name}/>
                             )
                         })
                     }

@@ -443,9 +443,35 @@ async function getAllCategory() {
     console.error(`Error is: ${error}`);
   }
 }
+async function getCategoryById(id) {
+  const apiGetCategoryById = 'http://' + SERVER_NAME + '/category/'+ id;
+  try {
+    let response = await fetch(apiGetCategoryById, {
+      method: 'GET',
+    });
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
 async function getProductByCategory(category) {
   const apiGetProductByCategory=
     'http://' + SERVER_NAME + '/product/?category=' + category ;
+  try {
+    let response = await fetch(apiGetProductByCategory, {
+      method: 'GET',
+    });
+    let responseJson = await response.json();
+    // console.log("category:", responseJson)
+    return responseJson;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
+async function getProductByCategoryOrdering(category, order) {
+  const apiGetProductByCategory=
+    'http://' + SERVER_NAME + '/product/?category=' + category+'&ordering='+order ;
   try {
     let response = await fetch(apiGetProductByCategory, {
       method: 'GET',
@@ -482,5 +508,7 @@ export {
   getTypeOfCategory,
   getCategory,
   getProductByCategory,
-  getAllCategory
+  getAllCategory,
+  getCategoryById,
+  getProductByCategoryOrdering
 };

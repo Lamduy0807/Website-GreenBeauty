@@ -1,0 +1,19 @@
+.categories{
+    width: 100%;
+    &__container{
+        background-color: $white;
+        max-width: 1400px;
+        margin: auto;
+        display: flex;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);   
+    }
+    &__left{
+        flex: .2;
+        padding: 0 1rem 1rem 1rem;
+        border-right: 1px solid rgba($textcolor, .2);
+    }
+    &__right{
+        flex: .8;
+    }
+    
+}
