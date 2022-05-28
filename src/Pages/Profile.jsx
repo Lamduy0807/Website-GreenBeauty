@@ -46,13 +46,15 @@ const Profile = () => {
   const handleUpdateInformation = () =>{
     const ids = localStorage.getItem("id");
     const token = localStorage.getItem("token");
-    console.log("avatar", avatar);
     if(avatar===undefined)
       putUpdateUserInformation(ids, token, userData.email, userData.name, userData.phone, checked, convert(userData.dateofbirth)).then(res=>{
-      console.log("result ",res);
+        if(res===200)
+          window.location.reload();
       })
     else
       putUserInformation(ids, token, userData.email, userData.name, userData.phone, checked, convert(userData.dateofbirth), avatar).then(res=>{
+        if(res===200)
+          window.location.reload();
     })
     getUserInfor();
   }

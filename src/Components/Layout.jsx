@@ -12,6 +12,7 @@ import CartProvider from "../Context/CartContext/CartProvider";
 import UserProvider from "../Context/UserContext/UserProvider";
 import ModalProvider from "../Context/ModelContext/ModalProvider";
 import SideMenu from "./SideMenu";
+import RatingProduct from "./MenuProfile/RatingProduct";
 const Layout = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -33,6 +34,7 @@ const Layout = () => {
               render={(props) => (
                 <div>
                   <UpdateInformation/>
+                  <RatingProduct/>
                   <IngredientDetailModal/>
                   <SideMenu/>
                   <LoginPopup

@@ -1,7 +1,9 @@
-import React, { useState , useEffect } from "react";
+import React, { useState , useEffect, useContext } from "react";
 import ProductComponent from "./ProductComponent";
-import { getDetailOrderInformation , putConfirmDelivery, putCanceDlelivery} from "../../API/Networking";
+import { getDetailOrderInformation, putConfirmDelivery, putCanceDlelivery} from "../../API/Networking";
+import {ModalContext} from '../../Context/ModelContext/ModalContext'
 const OrderComponent = (props) => {
+  const {setDetailData, setShowRating} = useContext(ModalContext)
   const [detailProduct, setDetailProduct] = useState([])
   useEffect(() => {
     getDetailOrderInformation(props.id).then(res=>{
@@ -19,6 +21,13 @@ const OrderComponent = (props) => {
       if(res===200)
       window.location.reload();
     })
+  }
+  const handleEvaluate = () =>{
+    detailProduct.forEach(item=>{
+      if(!item.isRating)
+      setDetailData(prev=>[...prev, item])
+    })
+    setShowRating(prev=>!prev)
   }
   return (
     <div className="orderCom">
@@ -53,7 +62,7 @@ const OrderComponent = (props) => {
               <button onClick={handleCancelDelivery} className={props.status==='1'? 'button orderCom__btngroup--white' : 'displaynone'}>Hủy đơn hàng</button>
               <button className={props.status==='2'? 'button orderCom__btngroup--white' : 'displaynone'}>Chờ Xác Nhận</button>
               <button onClick={handleConfirmDelivery} className={props.status==='3'? 'button orderCom__btngroup--active' : 'displaynone'}>Đã Nhận Được Hàng</button>
-              <button className={props.status==='4'? 'button orderCom__btngroup--active' : 'displaynone'}>Đánh Giá</button>
+              <button onClick={handleEvaluate} className={(props.status==='4')? 'button orderCom__btngroup--active' : 'displaynone'}>Đánh Giá</button>
               <button className={props.status==='5'? 'button orderCom__btngroup--white' : 'displaynone'}>Đã Hủy</button>
           </div>
         </div>

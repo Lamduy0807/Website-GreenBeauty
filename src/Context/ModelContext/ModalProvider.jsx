@@ -10,8 +10,10 @@ const ModalProvider = ({children}) => {
   })
   const [showModal, setShowModal] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
+  const [showRating, setShowRating] = useState(false);
+  const [detailData, setDetailData] = useState([])
   return (
-    <ModalContext.Provider value={{showMenu, setShowMenu, data, setData, showModal, setShowModal}}>{children}</ModalContext.Provider>
+    <ModalContext.Provider value={{showRating,setShowRating,detailData, setDetailData, showMenu, setShowMenu, data, setData, showModal, setShowModal}}>{children}</ModalContext.Provider>
   )
 }
 
