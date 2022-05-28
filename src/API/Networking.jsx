@@ -516,7 +516,40 @@ async function postRatingInformation(id, token ,img,comment, defaultRating ) {
     console.error(`Error is: ${error}`);
   }
 }
-
+async function getSearchProduct(query) {
+  const apiSearchProduct =
+    'http://' +
+    SERVER_NAME +
+    '/product/?search=' +
+    query +
+    '&ordering=price';
+  if (query != '') {
+    try {
+      let response = await fetch(apiSearchProduct, {method: 'GET'});
+      let responseJson = await response.json();
+      return responseJson;
+    } catch (error) {
+      console.error(`Error is: ${error}`);
+    }
+  }
+}
+async function getSearchProductWithFiltering(query, filter) {
+  const apiSearchProductWithFiltering =
+    'http://' +
+    SERVER_NAME +
+    '/product/?search=' +
+    query +
+    '&ordering='+ filter;
+  if (query != '') {
+    try {
+      let response = await fetch(apiSearchProductWithFiltering, {method: 'GET'});
+      let responseJson = await response.json();
+      return responseJson;
+    } catch (error) {
+      console.error(`Error is: ${error}`);
+    }
+  }
+}
 export {
   putCanceDlelivery,
   putConfirmDelivery,
@@ -546,5 +579,7 @@ export {
   getCategoryById,
   getProductByCategoryOrdering,
   setRating,
-  postRatingInformation
+  postRatingInformation,
+  getSearchProduct,
+  getSearchProductWithFiltering
 };

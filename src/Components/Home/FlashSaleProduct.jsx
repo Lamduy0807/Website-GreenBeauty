@@ -2,14 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { getProductRating } from "../../API/Networking";
 const FlashSaleProduct = (props) => {
-  const percent = 33;
-  const [height, setHeight] = useState(0);
-  const [maxStar, setMaxStar] = useState([1, 2, 3, 4, 5]);
+  const maxStar = [1, 2, 3, 4, 5];
   const [numberRating, setNumberRating] = useState(0);
   const [sumValue, setSumValue] = useState(0);
-
-  const ref = useRef(null);
-
 
   useEffect(() => {
     getProductRating(props.id).then((ratings) => {
@@ -24,7 +19,7 @@ const FlashSaleProduct = (props) => {
 
   return (
     <div className="fsp">
-      <div className="fsp__card fsp__front" ref={ref}>
+      <div className="fsp__card fsp__front">
         <div className="fsp__front__img">
           <img className="fsp__front__img__image" src={props.src} />
           <div className="fsp__front__flag">

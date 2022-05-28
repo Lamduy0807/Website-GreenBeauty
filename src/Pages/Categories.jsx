@@ -20,11 +20,6 @@ const Categories = () => {
           })}
         </div>
         <div className="categories__right">
-          <div className="categories__filter">
-            <div className="categories__filter__container">
-                
-            </div>
-          </div>
           <Route path={`${path}/:id/:name`}>
             <CategoriesInDetail/>
           </Route>
