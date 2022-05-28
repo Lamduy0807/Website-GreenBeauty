@@ -483,6 +483,40 @@ async function getProductByCategoryOrdering(category, order) {
     console.error(`Error is: ${error}`);
   }
 }
+async function setRating(id) {
+  const apiSetRatingById =
+    'http://'+ SERVER_NAME +'/detailorder/' + id + '/set-rating/';
+  try {
+    let response = await fetch(apiSetRatingById, {
+      method: 'POST',
+    });
+    return response.status;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
+async function postRatingInformation(id, token ,img,comment, defaultRating ) {
+  const apiPostRatingInformation = "http://" + SERVER_NAME + "/product/" + id + "/add-rating/";
+  try {
+    var form = new FormData();
+    form.append('img', img);
+    form.append('comment', comment);
+    form.append('point', defaultRating);
+
+    let response = await fetch(apiPostRatingInformation , {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+      body: form,
+    });
+    //let responseJson = await response.json();
+    return response.status;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
+
 export {
   putCanceDlelivery,
   putConfirmDelivery,
@@ -510,5 +544,7 @@ export {
   getProductByCategory,
   getAllCategory,
   getCategoryById,
-  getProductByCategoryOrdering
+  getProductByCategoryOrdering,
+  setRating,
+  postRatingInformation
 };

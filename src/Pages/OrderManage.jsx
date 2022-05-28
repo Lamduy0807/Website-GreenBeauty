@@ -25,7 +25,6 @@ const OrderManage = () => {
     getOrderInformation(id).then(res=>{
       setOrderData(res);
       res.forEach(item => {
-        console.log("im here");
         if(item.status==='1')
           setPending(prev=>[...prev, item]);
         else if(item.status==='2')
