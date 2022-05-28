@@ -25,7 +25,7 @@ const MenuLogin = ({handleLeave}) => {
             </Link>
           </div>
           <div className="menu__content__item">
-            <Link className="menu__content__item--link">
+            <Link to={'/product-love'} className="menu__content__item--link">
               <i className="bx bxs-heart margin-right"></i>
               Sản phẩm yêu thích
             </Link>
