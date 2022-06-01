@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { getProductById } from "../API/Networking";
 import Dialog from "../Components/Dialog";
 import ConfirmDialog from "../Components/ConformDialog";
+import Rating from "../Components/DetailProduct/Rating";
+
 
 const Product = () => {
   const [product, setProduct] = useState("");
@@ -52,6 +54,8 @@ const Product = () => {
         console.log("Lỗi tải ảnh trong chi tiết sản phẩm");
       });
   };
+
+  
 
   return (
     <div className="detailProduct">
@@ -180,8 +184,8 @@ const Product = () => {
         </div>
       </div>
       <div className="detailProduct__container--big">
-        <div style={{ backgroundColor: "#fff", marginTop: 10 }}>
-          <h4>Thông tin chi tiết</h4>
+        <div className="section">
+          <h4 className="title">Thông tin chi tiết</h4>
           <table>
             <tr>
               <td>Thương hiệu</td>
@@ -196,32 +200,32 @@ const Product = () => {
       </div>
 
       <div className="detailProduct__container--big">
-        <div style={{ backgroundColor: "#fff", marginTop: 10 }}>
-          <h4>Mô tả sản phẩm</h4>
-          <h4>{product.description}</h4>
+        <div className="section">
+          <h4 className="title">Mô tả sản phẩm</h4>
+          <h4 className="content">{product.description}</h4>
         </div>
       </div>
 
       <div className="detailProduct__container--big">
-        <div style={{ backgroundColor: "#fff", marginTop: 10 }}>
-          <h4>Thành phần sản phẩm</h4>
-          <h4>{product.Ingredient}</h4>
+        <div className="section">
+          <h4 className="title">Thành phần sản phẩm</h4>
+          <h4 className="content">{product.Ingredient}</h4>
         </div>
       </div>
 
       <div className="detailProduct__container--big">
-        <div style={{ backgroundColor: "#fff", marginTop: 10 }}>
-          <h4>Hướng dẫn sử dụng</h4>
-          <h4>{product.instruction}</h4>
+        <div className="section">
+          <h4 className="title">Hướng dẫn sử dụng</h4>
+          <h4 className="content">{product.instruction}</h4>
         </div>
       </div>
 
       <div className="detailProduct__container--big">
-        <div style={{ backgroundColor: "#fff", marginTop: 10 }}>
-          <h4>Đánh giá sản phẩm</h4>
-          <h4>{product.instruction}</h4>
-        </div>
+        <Rating id={product.id}/>
+
+        
       </div>
+     
 
       <Dialog notify={notify} setNotify={setNotify} />
       <ConfirmDialog

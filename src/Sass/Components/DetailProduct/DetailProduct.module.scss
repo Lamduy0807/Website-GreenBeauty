@@ -2,7 +2,7 @@
   width: 100%;
   &__container {
     box-sizing: border-box;
-    background-color: $white;
+    background-color: white;
     display: flex;
     &--big {
       max-width: 1200px;
@@ -114,4 +114,25 @@
       }
     }
   }
+}
+
+.section{
+  background-color: white;
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.title{
+
+color: black;  
+font-weight: 700;
+font-size: 18px;
+}
+.content{
+  font-size: 13px;
+  font-weight:normal;
+
+  // font-family: Arial, Helvetica, sans-serif;
+ color: black;
 }
