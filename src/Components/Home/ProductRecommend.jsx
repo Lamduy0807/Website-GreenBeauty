@@ -26,7 +26,7 @@ const ProductRecommend = () => {
     <div className="pr">
       <div className="pr__container">
         <div >
-          <h2 className="pr__title" >Sản phẩm dành cho bạn</h2>
+          <h2 className="pr__title" >gợi ý dành cho bạn</h2>
         </div>
 
         <div className="pr__product" >
@@ -34,7 +34,6 @@ const ProductRecommend = () => {
             {product.slice(0,maxRange).map((item, index) => (
               <Link to={`/product/${item.id}`}  key={index} >
               <Product
-                key={index}
                 src={item.imagepresent}
                 name={item.name}
                 price={item.price}

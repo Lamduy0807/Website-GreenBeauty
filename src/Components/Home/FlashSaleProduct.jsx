@@ -2,16 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { getProductRating } from "../../API/Networking";
 const FlashSaleProduct = (props) => {
-  const percent = 33;
-  const [height, setHeight] = useState(0);
-  const [maxStar, setMaxStar] = useState([1, 2, 3, 4, 5]);
+  const maxStar = [1, 2, 3, 4, 5];
   const [numberRating, setNumberRating] = useState(0);
   const [sumValue, setSumValue] = useState(0);
-
-  const ref = useRef(null);
-  useEffect(() => {
-    setHeight(ref.current.clientHeight);
-  }, []);
 
   useEffect(() => {
     getProductRating(props.id).then((ratings) => {
@@ -26,7 +19,7 @@ const FlashSaleProduct = (props) => {
 
   return (
     <div className="fsp">
-      <div className="fsp__card fsp__front" ref={ref}>
+      <div className="fsp__card fsp__front">
         <div className="fsp__front__img">
           <img className="fsp__front__img__image" src={props.src} />
           <div className="fsp__front__flag">
@@ -47,8 +40,8 @@ const FlashSaleProduct = (props) => {
               <div className="fsp__infor__price--currency">đ</div>
             </div>
             <div className="fsp__infor__price">
-              {props.price}
-              <div className="fsp__infor__price--currency">đ</div>
+              {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(props.price)}
+              {/* <div className="fsp__infor__price--currency">đ</div> */}
             </div>
           </div>
         </div>
@@ -56,22 +49,23 @@ const FlashSaleProduct = (props) => {
 
       <div
         className="fsp__card fsp__back fsp__back__ground"
-        style={{ height: height }}
+        //style={{ height: height }}
       >
         <div className="fsp__back__content">
           <div className="fsp__back__content__cta">
-            <p className="fsp__back__content__cta--avg">{props.brand}</p>
-            <p className="fsp__back__content__cta--only">Chỉ còn</p>
-            <p className="fsp__back__content__cta--value orange">
-              {props.sale}
-            </p>
-            <p className="fsp__back__content__cta--only">
+            <span className="fsp__back__content__cta--avg displayblock">{props.brand}</span>
+            <span className="fsp__back__content__cta--only displayblock">Chỉ còn</span>
+            <span className="fsp__back__content__cta--value orange displayblock">
+              {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(props.sale)}
+            </span>
+            <span className="fsp__back__content__cta--only displayblock">
               ({numberRating})<br></br>
-              <p className="fsp__back__content__cta--value orange">
+              <span className="fsp__back__content__cta--value orange displayblock">
                 {maxStar.map((item, key) => {
                   return (
                     <i
-                      class={
+                      key={key}
+                      className={
                         item <= sumValue / numberRating
                           ? "bx bxs-star"
                           : "bx bx-star"
@@ -79,10 +73,10 @@ const FlashSaleProduct = (props) => {
                     ></i>
                   );
                 })}
-              </p>
-            </p>
+              </span>
+            </span>
 
-            <Link to={"/cart"} class="btn btn--white btn__animated">
+            <Link to={"/cart"} className="btn btn--white btn__animated">
               Add to Cart
             </Link>
           </div>

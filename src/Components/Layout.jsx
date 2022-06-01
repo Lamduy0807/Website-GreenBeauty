@@ -6,10 +6,13 @@ import Footer from "./Footer";
 import LoginPopup from "./LoginPopup";
 import RegisterPopup from "./RegisterPopup";
 import UpdateInformation from "./UpdateInformation";
+import IngredientDetailModal from '../Components/AnalyticsIngredient/IngredientDetailModal'
 import AuthProvider from "../Context/AuthContext/AuthProvider";
 import CartProvider from "../Context/CartContext/CartProvider";
 import UserProvider from "../Context/UserContext/UserProvider";
-
+import ModalProvider from "../Context/ModelContext/ModalProvider";
+import SideMenu from "./SideMenu";
+import RatingProduct from "./MenuProfile/RatingProduct";
 const Layout = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -26,10 +29,14 @@ const Layout = () => {
       <AuthProvider>
         <UserProvider>
           <CartProvider>
+            <ModalProvider>
             <Route
               render={(props) => (
                 <div>
                   <UpdateInformation/>
+                  <RatingProduct/>
+                  <IngredientDetailModal/>
+                  <SideMenu/>
                   <LoginPopup
                     showLogin={showLogin}
                     setShowLogin={setShowLogin}
@@ -54,6 +61,7 @@ const Layout = () => {
                 </div>
               )}
             />
+            </ModalProvider>
           </CartProvider>
         </UserProvider>
       </AuthProvider>

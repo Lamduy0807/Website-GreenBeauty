@@ -37,6 +37,16 @@
     width: 40%;
     position: relative;
     box-shadow: 0 0px 1px 0 rgba($color: #000000, $alpha: 0.4);
+    &__box{
+      position: absolute;
+      width: 100%;
+      z-index: 2000;
+      background-color: $white;
+      top: 45px;
+      display: flex;
+      flex-direction: column;
+      
+    }
     &__bar {
       --focus-indicator-spacing: 3px;
       display: flex;
@@ -74,6 +84,12 @@
       outline: 0;
       height: 100%;
       width: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      background-color: $main-btn;
+      color: $white;
     }
   }
   &__right {
@@ -124,6 +140,39 @@
         background-color: transparent;
         align-self: center;
         //line-height: 1rem;
+    }
+  }
+  &__product{
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    text-decoration: none;
+    padding: .5rem 1rem .5rem 1rem;
+    &:hover{
+      background-color: #eaeaea;
+    }
+    &__img{
+      height: 50px;
+      width: 50px;
+      margin-right: .5rem;
+    }
+    &__content{
+      display: flex;
+      flex-direction: column;
+      &--price{
+        color: $main-btn;
+      }
+      &--name{
+        color: $textcolor;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        min-height: calc(2rem);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
     }
   }
 }

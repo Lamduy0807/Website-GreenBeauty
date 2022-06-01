@@ -6,11 +6,12 @@ import ConfirmDialog from "../Components/ConformDialog";
 import Rating from "../Components/DetailProduct/Rating";
 
 
-const Product = () => {
+const Product = (props) => {
   const [product, setProduct] = useState("");
   const [counter, setCounter] = useState(1);
   const params = useParams();
-  const productId = params.productId;
+  console.log(props.match.params.slug);
+  const productId = props.match.params.slug;
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -110,7 +111,7 @@ const Product = () => {
                 onClick={onPress}
               >
                 <i
-                  class="bx bxs-cart-add"
+                  className="bx bxs-cart-add"
                   style={{ fontSize: 24, paddingRight: 10 }}
                 ></i>
                 Thêm Vào Giỏ Hàng
@@ -119,41 +120,41 @@ const Product = () => {
                 className="detailProduct__container__content__spaceContainer__button"
                 style={{ backgroundColor: "#ff6600" }}
               >
-                <i class="bx bx-cart-add"></i>
+                <i className="bx bx-cart-add"></i>
                 Mua Ngay
               </button>
             </div>
 
             <div className="detailProduct__container__content__spaceContainer">
               <button
-                class="btn detailProduct__container__content__spaceContainer__blueBtn"
+                className="btn detailProduct__container__content__spaceContainer__blueBtn"
                 onClick={onPress}
                 type="button"
               >
                 <i
-                  class="bx bxs-like"
+                  className="bx bxs-like"
                   style={{ color: "#fff", marginLeft: 2, marginRight: 2 }}
                 ></i>
                 Thích
               </button>
 
               <button
-                class="btn detailProduct__container__content__spaceContainer__blueBtn"
+                className="btn detailProduct__container__content__spaceContainer__blueBtn"
                 type="button"
               >
                 <i
-                  class="bx bxs-share"
+                  className="bx bxs-share"
                   style={{ color: "#fff", marginLeft: 2, marginRight: 2 }}
                 ></i>
                 Chia sẻ
               </button>
 
               <button
-                class="btn detailProduct__container__content__spaceContainer__whiteBtn"
+                className="btn detailProduct__container__content__spaceContainer__whiteBtn"
                 onClick={onPress}
                 type="button"
               >
-                <i class="bx bxs-like"></i>
+                <i className="bx bxs-like"></i>
                 Thêm vào danh sách yêu thích
               </button>
             </div>
@@ -161,21 +162,21 @@ const Product = () => {
             <div style={{ marginTop: 30, display: "flex" }}>
               <div style={{ display: "flex", marginRight: 20 }}>
                 <div className="detailProduct__container__content__marketing">
-                  <i class="bx bx-undo" style={{ color: "#fff" }}></i>
+                  <i className="bx bx-undo" style={{ color: "#fff" }}></i>
                 </div>
                 7 ngày miễn phí trả hàng
               </div>
 
               <div style={{ display: "flex", marginRight: 20 }}>
                 <div className="detailProduct__container__content__marketing">
-                  <i class="bx bx-undo" style={{ color: "#fff" }}></i>
+                  <i className="bx bx-undo" style={{ color: "#fff" }}></i>
                 </div>
                 Hàng chính hãng 100%
               </div>
 
               <div style={{ display: "flex" }}>
                 <div className="detailProduct__container__content__marketing">
-                  <i class="bx bx-undo" style={{ color: "#fff" }}></i>
+                  <i className="bx bx-undo" style={{ color: "#fff" }}></i>
                 </div>
                 Miễn phí vận chuyển
               </div>
@@ -187,14 +188,16 @@ const Product = () => {
         <div className="section">
           <h4 className="title">Thông tin chi tiết</h4>
           <table>
-            <tr>
-              <td>Thương hiệu</td>
-              <td>{product.brand}</td>
-            </tr>
-            <tr>
-              <td>Xuất xứ</td>
-              <td>{product.origin}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>Thương hiệu</td>
+                <td>{product.brand}</td>
+              </tr>
+              <tr>
+                <td>Xuất xứ</td>
+                <td>{product.origin}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>

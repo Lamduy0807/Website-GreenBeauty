@@ -1,0 +1,63 @@
+.catelist {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    
+    &__container {
+        max-width: 1400px;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    &__header {
+        width: 100%;
+
+        &__h3 {
+            color: $main-bg;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__cate {
+        text-decoration: none;
+        height: 150px;
+        width: 150px;
+        display: flex;
+        flex-direction: column;
+        background-color: $white;
+        justify-content: space-between;
+        padding: .5rem;
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+        margin-left: 10px;
+        &__img {
+            width: 100%;
+            height: 80%;
+        }
+
+        &__name {
+            justify-items: center;
+            align-self: center;
+            color: rgba($color: $black, $alpha: 1);
+            font-size: 1.5rem;
+            line-height: 2rem;
+            min-height: calc(2rem);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+        &:hover .catelist__cate__img{
+            transition: transform .5s ease;
+            transform:  scale(1.05);
+        }
+        &:hover .catelist__cate__name{
+            color: $main-btn;
+        }
+    }
+    &__grid{
+        width: 100%;
+    }
+}

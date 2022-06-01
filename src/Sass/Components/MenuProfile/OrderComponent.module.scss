@@ -1,0 +1,119 @@
+.orderCom{
+    width: 100%;
+    margin-top: 2rem;
+    box-shadow: 1px 1px 1px 1px rgba($black, .3);
+    &__container{
+        //padding: 1rem;
+        background-color: $white;
+        display: flex;
+        flex-direction: column;
+    }
+    &__header{
+        margin: 1rem;
+        display: flex;
+        justify-content: flex-end;
+        //padding-bottom: 1rem;
+        //padding-left: 1rem;
+        //border-bottom: 1px solid rgba($textcolor, .3);
+        &__id{
+            margin-right: 1rem;
+        }
+        &__status{
+            padding-left: 1rem;
+            border-left: 1px solid rgba($textcolor, .3);
+            text-transform: uppercase;
+            color: $main-btn;
+        }
+    }
+    &__price{
+        display: flex;
+        align-items: center;
+        &__container{
+            display: flex;
+        }
+        &--d{
+            font-size: 1rem;
+            align-self: flex-start;
+            color: $main-btn;
+            text-decoration: underline;
+        }
+        &--price{
+            color: $main-btn;
+            font-size: 2rem;
+        }
+    }
+    &__body{
+        border-bottom: 1px solid rgba($textcolor, .3);
+    }
+    &__footer{
+        display: flex;
+        flex-direction: column;
+        align-items:flex-end;
+        padding: 1.5rem 1rem;
+    }
+
+    &__btngroup{
+        display: flex;
+        margin-top: 2.5rem;
+        &--white{
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            color: rgba($black, .8);
+            border: 1px solid rgba($textcolor, .5);
+            border-radius: 2px;
+        }
+        &--active{
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            color: $white;
+            border-radius: 2px;
+            background-color: $main-btn;
+            opacity: .7;
+            border: none;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+    &__product{
+        margin: 0 1rem;
+        padding: 1rem 0;
+        border-top: 1px solid rgba($textcolor, .3);
+        &__container{
+            display: flex;
+        }
+        &__image{
+            height: 100%;
+            aspect-ratio: 1/1;
+            width: 12rem;
+            flex: .2;
+            border: 1px solid rgba($textcolor, .2);
+            &--img{
+                width: 100%;
+                height: 100%;
+                text-align: center;
+            }
+        }
+        &__information{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-left: 1rem;
+            color: rgba($black, .8);
+        }
+        &__price{
+            flex: .15;
+            text-align: end;
+            align-self: center;
+            justify-content: flex-end;
+            display: flex;
+            &--text{
+                font-size: 1rem;
+                align-self: flex-start;
+            }
+            &--price{
+                color: rgba($black, .8);
+            }
+        }
+    }
+}

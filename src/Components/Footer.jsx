@@ -10,25 +10,25 @@ const Footer = () => {
           <div className="col-1-of-4">
             <h2 className="footer__h2">Chăm sóc khách hàng</h2>
             <ul className="footer__ul">
-              <Link className="footer__li">Trung tâm giúp đỡ</Link>
-              <Link className="footer__li">Hướng dẫn mua hàng</Link>
-              <Link className="footer__li">Chăm sóc khách hàng</Link>
-              <Link className="footer__li">Trả hàng hoàn tiền</Link>
+              <Link to={'/'} className="footer__li">Trung tâm giúp đỡ</Link>
+              <Link to={'/'} className="footer__li">Hướng dẫn mua hàng</Link>
+              <Link to={'/'} className="footer__li">Chăm sóc khách hàng</Link>
+              <Link to={'/'} className="footer__li">Trả hàng hoàn tiền</Link>
             </ul>
           </div>
           <div className="col-1-of-4">
             <h2 className="footer__h2">Về GreenBeauty</h2>
-            <Link className="footer__li">Giới thiệu</Link>
-              <Link className="footer__li">Tuyển dụng</Link>
-              <Link className="footer__li">Liên hệ</Link>
+            <Link to={'/'} className="footer__li">Giới thiệu</Link>
+              <Link to={'/'} className="footer__li">Tuyển dụng</Link>
+              <Link to={'/'} className="footer__li">Liên hệ</Link>
           </div>
           <div className="col-1-of-4">
             <h2 className="footer__h2">Theo dõi chúng tôi</h2>
-            <Link className="footer__li text-align">
-              <i class='bx bxl-facebook-square margin-right text-align'></i>
+            <Link to={'/'} className="footer__li text-align">
+              <i className='bx bxl-facebook-square margin-right text-align'></i>
               Facebook</Link>
-              <Link className="footer__li text-align">
-              <i class='bx bxl-instagram margin-right text-align' ></i>
+              <Link to={'/'} className="footer__li text-align">
+              <i className='bx bxl-instagram margin-right text-align' ></i>
               Instagram</Link>
           </div>
           <div className="col-1-of-4">
