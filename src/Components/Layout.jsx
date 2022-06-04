@@ -40,10 +40,12 @@ const Layout = () => {
                   <LoginPopup
                     showLogin={showLogin}
                     setShowLogin={setShowLogin}
+                    openRe={openRegister}
                   />
                   <RegisterPopup
                     showRegister={showRegister}
                     setShowRegister={setShowRegister}
+                    open={openLogin}
                   />
                   <Header
                     {...props}
