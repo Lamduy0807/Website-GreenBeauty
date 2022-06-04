@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { postRegister } from "../API/Networking";
-const RegisterPopup = ({ showRegister, setShowRegister }) => {
+const RegisterPopup = ({ showRegister, setShowRegister, open }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
@@ -29,7 +29,7 @@ const RegisterPopup = ({ showRegister, setShowRegister }) => {
           <div className="register__container">
             <div className="register__container__exit"
             onClick={()=> setShowRegister(prev=> !prev)}>
-              <i class="bx bx-x"></i>
+              <i className="bx bx-x"></i>
             </div>
 
             <form className="register__form">
@@ -42,7 +42,7 @@ const RegisterPopup = ({ showRegister, setShowRegister }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <i class="bx bx-envelope register__form__i"></i>
+                <i className="bx bx-envelope register__form__i"></i>
               </div>
 
               
@@ -54,7 +54,7 @@ const RegisterPopup = ({ showRegister, setShowRegister }) => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <i class="bx bx-lock-alt register__form__i"></i>
+                <i className="bx bx-lock-alt register__form__i"></i>
               </div>
 
               <div className="register__form__realtive">
@@ -65,7 +65,7 @@ const RegisterPopup = ({ showRegister, setShowRegister }) => {
                   value={rePassword}
                   onChange={(e) => setRePassword(e.target.value)}
                 />
-                <i class="bx bx-lock-alt register__form__i"></i>
+                <i className="bx bx-lock-alt register__form__i"></i>
               </div>
               <div className="register__form__button"
               onClick={handleRegister}>
@@ -73,7 +73,7 @@ const RegisterPopup = ({ showRegister, setShowRegister }) => {
               </div>
               <div className="register__form__login">
                 <div>Bạn đã có tài khoản? </div>
-                <div className="register__form__login--res">
+                <div className="register__form__login--res" onClick={()=> { open(); setShowRegister(prev=> !prev)}} >
                   Đăng nhập ngay
                 </div>
               </div>

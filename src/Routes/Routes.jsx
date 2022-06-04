@@ -12,6 +12,7 @@ import LoveList from '../Pages/LoveList';
 import Address from '../Pages/Address';
 import Categories from '../Pages/Categories';
 import SearchPage from '../Pages/SearchPage';
+import DetailOrder from '../Pages/DetailOrder'
 const Routes = () => {
   return (
     <Switch>
@@ -23,6 +24,7 @@ const Routes = () => {
       <Route path='/order-manage' exact component={OrderManage}/>
       <Route path='/product-love' exact component={LoveList}/>
       <Route path='/address'  component={Address}/>
+      <Route path='/order-manage/detail/:id' exact component={DetailOrder} />
       <Route path='/categories'>
         <Categories/>
       </Route>

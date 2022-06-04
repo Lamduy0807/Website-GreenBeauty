@@ -1,0 +1,284 @@
+.do{
+    &__container{
+        background-color: $white;
+        display: flex;
+        flex-direction: column;
+        //padding: 1rem;
+        box-shadow: 1px 1px 1px 1px rgba($black, .21);
+    }
+    &__process{
+        display: flex;
+        padding: 3rem 1rem;
+        width: 100%;
+        border-bottom: 1px solid rgba($textcolor, .5);
+        &__container{
+            flex: .2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        &__pic{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: center;
+            &__container{
+                &--inactive{
+                    height: 60px;
+                width: 60px;
+                border-radius: 60px;
+                //background-color: rgba($textcolor,.5);
+                border: 5px solid rgba($textcolor,.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                }
+                &--active{
+                height: 60px;
+                width: 60px;
+                border-radius: 60px;
+                background-color: $main-bg;
+                border: 5px solid $main-bg;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                }
+                height: 60px;
+                width: 60px;
+                border-radius: 60px;
+                border: 5px solid $main-bg;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            &__icon{
+                font-size: 3rem;
+                color: $main-bg;
+                &--active{
+                    font-size: 3rem;
+                    color: $white;
+                }
+                &--inactive{
+                    font-size: 3rem;
+                    color: rgba($textcolor,.5);
+                }
+            }
+            &__line{
+                flex: 1;
+                height: 5px;
+                background-color: $main-bg;
+            }
+            &__line--inactive{
+                flex: 1;
+                background-color: rgba($textcolor,.5);
+                height: 5px;
+            }
+            &__line--nocolor{
+                flex: 1;
+                height: 5px;
+            }
+        }
+        &__content{
+            margin-top: 1rem;
+            color: rgba($black, .7);
+        }
+    }
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: .5px solid rgba($black, .21);
+        padding: 1rem;
+        &__back{
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $textcolor;
+            font-size: 1.7rem;
+        }
+        &__infor{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &__line{
+            height: 100%;
+            width: 1px;
+            background-color: $textcolor;
+            margin: 0 1rem;
+        }
+        &__infora{
+            text-transform: uppercase;
+            color: $main-btn;
+        }
+    }
+    &__btn{
+        display: flex;
+        margin-top: 1rem;
+        padding: 1rem;
+        &__warning{
+            flex: .75;
+
+        }
+        &__button{
+            flex: .25;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &--btn{
+                padding: 1rem 1.5rem;
+                background-color: $main-btn;
+                color: $white;
+                border: none;
+                font-size: 1.5rem;
+                border-radius: 5px;
+                cursor: pointer;
+                &:hover{
+                    opacity: .7;
+                }
+                &--inactive{
+                    padding: 1rem 1.5rem;
+                    background-color: $white;
+                    color: $textcolor;
+                    border: 1px solid rgba($textcolor, .5);
+                    font-size: 1.5rem;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+    &__detail{
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        width: 100%;
+        &__line{
+            padding: 3px 0;
+            width: 100%;
+            &--line{
+                height: 0.2rem;
+                width: 100%;
+                background-position-x: -1.875rem;
+                background-size: 7.25rem 0.1875rem;
+                background-image: repeating-linear-gradient(45deg,$main-bg,$main-bg 33px,transparent 0,transparent 41px,$main-btn 0,$main-btn 74px,transparent 0,transparent 82px);
+            }
+        }
+        &__title{
+            font-size: 2rem;
+            width: 100%;
+            margin-top: 1rem;
+            color: rgba($black, .7);
+            padding-left: 1rem;
+        }
+        &__content{
+            display: flex;
+            margin-top: 1rem;
+            padding-left: 1rem;
+            //border-bottom: 1px solid rgba($textcolor, .5);
+            padding-bottom: 1rem;
+            &__name{
+                color: rgba($black, .7);
+                font-size: 1.5rem;
+                margin-top: .5rem;
+            }
+            &__infro{
+                color: rgba($black, .6);
+                font-size: 1.3rem;
+                margin-top: .5rem;
+            }
+            &__right{
+                flex: .4;
+                padding-right: 2rem;
+                
+            }
+            &__left{
+                flex: .6;
+                padding-left: 10%;
+                border-left: 1px solid rgba($textcolor, .5);
+            }
+        }
+        &__status{
+            display: flex;
+            flex-direction: column;
+            &__processname{
+                flex: .8;
+            }
+            &__contain{
+                display: flex;
+                width: 100%;
+            }
+            &__process{
+                display: flex;
+                flex: .2;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                &--circle{
+                    height: 10px;
+                    width: 10px;
+                    position: absolute;
+                    border-radius: 10px;
+                    background-color: rgba($textcolor,1);
+                    z-index: 100;
+                    &--active{
+                        height: 10px;
+                        width: 10px;
+                        position: absolute;
+                        border-radius: 10px;
+                        background-color: $main-btn;
+                    }
+                }
+                &--top{
+                    height: 11px;
+                    width: 1px;
+                    &--active{
+                        height: 11px;
+                        width: 1px;
+                        background-color: rgba($textcolor,.3);
+                    }
+                }
+                &--bottom{
+                    height: 11px;
+                    width: 1px;
+                    &--active{
+                        height: 11px;
+                        width: 1px;
+                        background-color: rgba($textcolor,.3);
+                    }
+                }
+            }
+        }
+    }
+    &__fee{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        &__row{
+            display: flex;
+            width: 100%;
+            border-top: 1px solid  rgba($textcolor,.1);
+            &--final
+            {
+                border-bottom: 1px solid  rgba($textcolor,.1);
+            }
+        }
+        &__infor{
+            width: 100%;
+            flex: .8;
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem;
+        }
+        &__fee{
+            width: 100%;
+            flex: .2;
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem;
+            color: $main-btn;
+            border-left: 1px solid  rgba($textcolor,.1);
+        }
+    }
+}
