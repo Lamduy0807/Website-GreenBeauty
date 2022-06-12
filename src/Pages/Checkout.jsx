@@ -38,7 +38,7 @@ export const Checkout = (props) => {
         listOrderDetail.forEach((item) => {
           postOrderDetail(result.id, item.product_id, item.quantity)
             .then((res) => {
-              console.log('orderID:', result.id)
+              console.log("orderID:", result.id);
               setOrderID(result.id);
             })
             .catch((error) => {
@@ -52,7 +52,7 @@ export const Checkout = (props) => {
               console.log("cart id nè:", cartItem[0].id);
               deleteProductFromCart(cartItem[0].id)
                 .then(() => {
-history.push('/order-manage')
+                  history.push("/order-manage");
                   console.log(
                     "Đặt hàng thành công, đã xóa sản phẩm vừa mua khỏi giỏ hàng"
                   );

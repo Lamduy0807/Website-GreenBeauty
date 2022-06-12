@@ -94,9 +94,6 @@ const Cart = () => {
 
               <div>Xóa</div>
               <div>Tổng thanh toán (0 sản phẩm): 0đ</div>
-              {/* <Link to="/checkout" onClick={handleBuyProduct}>
-              <div>Mua hàng</div>
-            </Link> */}
               <button onClick={handleBuyProduct}>
                 <div>Mua hàng</div>
               </button>

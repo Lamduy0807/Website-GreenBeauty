@@ -3,11 +3,13 @@ import { getProductById } from "../../API/Networking";
 import { getProductFromCart } from "../../API/Server";
 import { putItemInCart } from "../../API/Server";
 import { UserContext } from "../../Context/UserContext/UserContext";
+import { CartContext } from "../../Context/CartContext/CartContext";
+import { deleteProductFromCart } from "../../API/Server";
 
 export const CartItem = ({ item, handleSelect }) => {
   const productID = item.product;
   const { token, userData } = useContext(UserContext);
-
+  const { cartData } = useContext(CartContext);
   const [product, setProduct] = useState("");
   const [isSelected, setIsSelect] = useState(false);
   const [quantity, setQuantity] = useState(item.quantities);
@@ -40,6 +42,18 @@ export const CartItem = ({ item, handleSelect }) => {
       .catch((error) => {
         console.error(`Error is: ${error}`);
       });
+  };
+
+ 
+ //Chưa xử lý dc
+  const handleDeleteProduct = () => {
+    deleteProductFromCart()
+    .then(()=>console.log("đã xóa sản phẩm khỏi giỏ hàng"))
+    .catch((error) => {
+      console.log(
+        "xóa sp khỏi giót hàng thất bại"
+      );
+    });
   };
 
   const btnSub = () => {
@@ -93,6 +107,8 @@ export const CartItem = ({ item, handleSelect }) => {
         <button>{quantity}</button>
         <button onClick={btnPlus}>+</button>
       </div>
+
+      <button>Xóa</button>
     </div>
   );
 };
