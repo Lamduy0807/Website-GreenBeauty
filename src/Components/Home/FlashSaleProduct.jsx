@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { getProductRating } from "../../API/Networking";
+import { formatNumber } from "../../Function/Function";
+
+
 const FlashSaleProduct = (props) => {
   const maxStar = [1, 2, 3, 4, 5];
   const [numberRating, setNumberRating] = useState(0);
@@ -40,7 +43,11 @@ const FlashSaleProduct = (props) => {
               <div className="fsp__infor__price--currency">đ</div>
             </div>
             <div className="fsp__infor__price">
-              {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(props.price)}
+              {/* {formatNumber(props.price)} */}
+              {Intl.NumberFormat("vi-VN", {
+                style: "currency",
+                currency: "VND",
+              }).format(props.price)}
               {/* <div className="fsp__infor__price--currency">đ</div> */}
             </div>
           </div>
@@ -53,10 +60,17 @@ const FlashSaleProduct = (props) => {
       >
         <div className="fsp__back__content">
           <div className="fsp__back__content__cta">
-            <span className="fsp__back__content__cta--avg displayblock">{props.brand}</span>
-            <span className="fsp__back__content__cta--only displayblock">Chỉ còn</span>
+            <span className="fsp__back__content__cta--avg displayblock">
+              {props.brand}
+            </span>
+            <span className="fsp__back__content__cta--only displayblock">
+              Chỉ còn
+            </span>
             <span className="fsp__back__content__cta--value orange displayblock">
-              {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(props.sale)}
+              {Intl.NumberFormat("vi-VN", {
+                style: "currency",
+                currency: "VND",
+              }).format(props.sale)}
             </span>
             <span className="fsp__back__content__cta--only displayblock">
               ({numberRating})<br></br>

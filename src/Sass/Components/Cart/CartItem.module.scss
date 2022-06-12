@@ -1,0 +1,11 @@
+.cartItem {
+  display: flex;
+  margin: 20px;
+  padding: 16px 0px;
+  border-bottom: 1px solid #e5e5e5;
+
+  &__checkbox {
+    align-items: center;
+    justify-content: center;
+  }
+}

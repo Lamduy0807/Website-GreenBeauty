@@ -1,0 +1,93 @@
+.cartScreen {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: auto;
+
+  &__header {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 3px;
+    height: 55px;
+    font-size: 14px;
+    background: #fff;
+    text-transform: capitalize;
+    margin-bottom: 12px;
+    color: #888;
+    padding: 0 20px;
+
+    &__checkbox {
+      padding: 0 12px 0 20px;
+      min-width: 58px;
+      display: flex;
+      flex-direction: row-reverse;
+      box-sizing: border-box;
+      font-size: 14px;
+      text-transform: capitalize;
+      color: #888;
+    }
+
+    &__sp {
+      color: rgba(0, 0, 0, 0.8);
+      width: 46.27949%;
+      font-size: 14px;
+      text-transform: capitalize;
+      color: #888;
+    }
+
+    &__dg {
+      width: 15.88022%;
+      text-align: center;
+      font-size: 14px;
+      text-transform: capitalize;
+      color: #888;
+    }
+
+    &__sl {
+      width: 15.4265%;
+      text-align: center;
+      font-size: 14px;
+      text-transform: capitalize;
+      color: #888;
+    }
+
+    &__st {
+      text-align: center;
+      font-size: 14px;
+      text-transform: capitalize;
+      color: #888;
+    }
+
+    &__tt {
+      width: 12.70417%;
+      font-size: 14px;
+      text-transform: capitalize;
+      color: #888;
+    }
+  }
+
+  &__list {
+    background-color: white;
+    padding-left: 50px;
+  }
+  &__buy{
+    background-color: white;
+    margin-top: 20px;
+    display: flex;
+
+    flex-direction: row;
+
+    &__checkbox{
+      padding: 0 12px 0 20px;
+      min-width: 58px;
+      display: flex;
+      box-sizing: border-box;
+      font-size: 14px;
+      text-transform: capitalize;
+      color: #888;
+    }
+
+  }
+}

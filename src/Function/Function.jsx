@@ -28,3 +28,8 @@ export const toSlug = (stri)=>
     // return
     return str;
 }
+
+
+export const formatNumber=(number)=>{
+    return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

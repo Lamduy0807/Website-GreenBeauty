@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import SideMenu from "../Components/MenuProfile/SideMenu";
-import { getUserInformation, putUserInformation, putUpdateUserInformation } from "../API/Networking"; 
+import {
+  getUserInformation,
+  putUserInformation,
+  putUpdateUserInformation,
+} from "../API/Networking";
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { UserContext } from "../Context/UserContext/UserContext";
 const Profile = () => {
-  const {getUserInfor} = useContext(UserContext)
+  const { getUserInfor } = useContext(UserContext);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -13,7 +17,7 @@ const Profile = () => {
     sex: "",
     dateofbirth: "",
   });
-  const [avatar, setAvatar] = useState()
+  const [avatar, setAvatar] = useState();
   const sexData = [{ name: "Male" }, { name: "Female" }];
   const [checked, setChecked] = useState();
   useEffect(() => {
@@ -32,40 +36,53 @@ const Profile = () => {
       console.log(`Error is ${error}`);
     }
   };
-  const handleUpdateFile = (e) =>{
+  const handleUpdateFile = (e) => {
     const reader = new FileReader();
-    reader.onload = () =>{
-      if(reader.readyState === 2)
-      {
-        setUserData({...userData, avt: reader.result})
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setUserData({ ...userData, avt: reader.result });
       }
-    }
+    };
     setAvatar(e.target.files[0]);
-    reader.readAsDataURL(e.target.files[0])
-  }
-  const handleUpdateInformation = () =>{
+    reader.readAsDataURL(e.target.files[0]);
+  };
+  const handleUpdateInformation = () => {
     const ids = localStorage.getItem("id");
     const token = localStorage.getItem("token");
-    if(avatar===undefined)
-      putUpdateUserInformation(ids, token, userData.email, userData.name, userData.phone, checked, convert(userData.dateofbirth)).then(res=>{
-        if(res===200)
-          window.location.reload();
-      })
+    if (avatar === undefined)
+      putUpdateUserInformation(
+        ids,
+        token,
+        userData.email,
+        userData.name,
+        userData.phone,
+        checked,
+        convert(userData.dateofbirth)
+      ).then((res) => {
+        if (res === 200) window.location.reload();
+      });
     else
-      putUserInformation(ids, token, userData.email, userData.name, userData.phone, checked, convert(userData.dateofbirth), avatar).then(res=>{
-        if(res===200)
-          window.location.reload();
-    })
+      putUserInformation(
+        ids,
+        token,
+        userData.email,
+        userData.name,
+        userData.phone,
+        checked,
+        convert(userData.dateofbirth),
+        avatar
+      ).then((res) => {
+        if (res === 200) window.location.reload();
+      });
     getUserInfor();
-  }
-  //console.log("avt: ", avatar.Prototype);
+  };
 
-  const convert = (str) =>{
+  const convert = (str) => {
     var date = new Date(str),
-    mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-    day = ("0" + date.getDate()).slice(-2);
-  return [ date.getFullYear(),mnth, day].join("-");
-  }
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
+  };
   return (
     <div className="profile">
       <div className="profile__container">
@@ -99,7 +116,9 @@ const Profile = () => {
                         className="profile__content__input"
                         placeholder="Nhập họ tên"
                         value={userData.name}
-                        onChange={(e) => setUserData({...userData, name: e.target.value})}
+                        onChange={(e) =>
+                          setUserData({ ...userData, name: e.target.value })
+                        }
                       />
                     </div>
                   </div>
@@ -115,7 +134,9 @@ const Profile = () => {
                         className="profile__content__input"
                         placeholder="Nhập số điện thoại"
                         value={userData.phone}
-                        onChange={(e) => setUserData({...userData, phone: e.target.value})}
+                        onChange={(e) =>
+                          setUserData({ ...userData, phone: e.target.value })
+                        }
                       />
                     </div>
                   </div>
@@ -154,7 +175,12 @@ const Profile = () => {
                       <DatePickerComponent
                         placeholder="Chọn ngày sinh"
                         value={userData.dateofbirth}
-                        onChange={(e) => setUserData({...userData, dateofbirth: e.target.value})}
+                        onChange={(e) =>
+                          setUserData({
+                            ...userData,
+                            dateofbirth: e.target.value,
+                          })
+                        }
                       ></DatePickerComponent>
                     </div>
                   </div>
@@ -165,7 +191,12 @@ const Profile = () => {
                     <span> </span>
                   </div>
                   <div className="profile__content__infor--row--right">
-                    <button onClick={handleUpdateInformation} className="button profile__btn">Lưu thông tin</button>
+                    <button
+                      onClick={handleUpdateInformation}
+                      className="button profile__btn"
+                    >
+                      Lưu thông tin
+                    </button>
                   </div>
                 </div>
               </div>
@@ -177,13 +208,18 @@ const Profile = () => {
                       src={userData.avt}
                     />
                   </div>
-                  <label htmlFor="upload-photo" className="button profile__btn marginBottom2 marginTop">Chọn ảnh</label>
-                  <input 
-                  //className="button profile__btn marginBottom2 marginTop"
-                  type="file"
-                  id="upload-photo"
-                  onChange={handleUpdateFile}>
-                  </input>
+                  <label
+                    htmlFor="upload-photo"
+                    className="button profile__btn marginBottom2 marginTop"
+                  >
+                    Chọn ảnh
+                  </label>
+                  <input
+                    //className="button profile__btn marginBottom2 marginTop"
+                    type="file"
+                    id="upload-photo"
+                    onChange={handleUpdateFile}
+                  ></input>
                   <span>Dung lượng tối đa 1 MB</span>
                   <span>Định dạng ảnh: .JPG, .PNG</span>
                 </div>

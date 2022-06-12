@@ -20,6 +20,11 @@
 @import './Components/Footer.module.scss';
 @import './Components/DetailProduct/DetailProduct.module.scss';
 @import './Components/Cart/EmptyCart.module.scss';
+@import './Components/Cart/CartScreen.module.scss';
+@import './Components/Cart/CartItem.module.scss';
+@import './Components/Cart/PopupNoSelectedInCart.module.scss';
+
+@import './Components/Cart/Checkout.module.scss';
 @import './Components/AnalyticIngredients/Analyticingredient.module.scss';
 @import './Components/AnalyticIngredients/IngredientCard.module.scss';
 @import './Components//MenuProfile/SideMenu.module.scss';
@@ -36,3 +41,8 @@
 @import './Page/Categories.module.scss';
 @import './Components/Categories/CategoriesInDetail.module.scss';
 @import './Components/MenuProfile/RatingProduct.module.scss';
+@import './Components/DetailProduct/Rating.module.scss';
+@import './Components/DetailProduct/RatingItem.module.scss';
+@import './Components/DetailProduct/PopupAddProductToCart.module.scss';
+
+
