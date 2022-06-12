@@ -78,7 +78,7 @@ async function postItemToCart(userData, accessToken, product) {
       body: JSON.stringify({
         quantities: 1,
         product: product.id,
-        user: userData.id,
+        user: userData,
       }),
     });
 

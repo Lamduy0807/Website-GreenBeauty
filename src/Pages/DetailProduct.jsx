@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getProductById } from "../API/Networking";
+import {
+  getCategoryById,
+  getProductById,
+  getProductByCategory,
+} from "../API/Networking";
 import Dialog from "../Components/Dialog";
 import ConfirmDialog from "../Components/ConformDialog";
 import Rating from "../Components/DetailProduct/Rating/Rating";
@@ -13,10 +17,16 @@ import {
   putItemInCart,
 } from "../API/Server";
 import { PopupAddProductToCart } from "../Components/Cart/Popup";
-
+import {
+  SampleNextArrow,
+  SamplePrevArrow,
+} from "../Components/Home/SettingForSlider";
+import Grid from "../Components/Grid";
+import { default as Pro } from "../Components/Home/Product";
+import { CartContext } from "../Context/CartContext/CartContext";
 const Product = (props) => {
   const { token, userData } = useContext(UserContext);
-
+  const {getCartInformation} = useContext(CartContext)
   const [product, setProduct] = useState("");
   const [counter, setCounter] = useState(1);
   const productId = props.match.params.slug;
@@ -27,7 +37,8 @@ const Product = (props) => {
   const [quantityOfCart, setQuantityOfCart] = useState(0);
   const [listData, setListData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
-
+  const [cate, setCate] = useState("UNDEFIED");
+  const [productRecommend, setProductRecommend] = useState([]);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -46,75 +57,96 @@ const Product = (props) => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
 
   //fetch dữ liệu giỏ hàng
   const fetchProductFromCart = () => {
-    console.log("productID:", productId);
-    getProductFromCart(userData.id, "")
-      .then((items) => {
-        items.forEach((item) => {
-          if (item.product == productId) {
-            console.log("item exits:", item);
+    try {
+      const id = localStorage.getItem("id");
+      const tokens = localStorage.getItem("token");
+      getProductFromCart(id, "")
+        .then((items) => {
+          items.forEach((item) => {
+            if (item.product == productId) {
+              console.log("item exits:", item);
 
-            //sản phẩm đã tồn tại
-            setTonTai(true);
-            setProduct_Exist(item);
-          }
+              //sản phẩm đã tồn tại
+              setTonTai(true);
+              setProduct_Exist(item);
+            }
+          });
+          setListData(items);
+          setQuantityOfCart(Object.keys(items).length);
+        })
+        .catch((error) => {
+          setListData([]);
         });
-        setListData(items);
-        setQuantityOfCart(Object.keys(items).length);
-      })
-      .catch((error) => {
-        setListData([]);
-      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   //refresh khi thêm sản phẩm mới
   const refreshProductFromCart = () => {
-    getProductFromCart(userData.id, "")
-      .then((items) => {
-        items.forEach((item) => {
-          if (item.product === productId) {
-            setTonTai(true);
-          }
+    try {
+      const id = localStorage.getItem("id");
+      const tokens = localStorage.getItem("token");
+      getProductFromCart(id, "")
+        .then((items) => {
+          items.forEach((item) => {
+            if (item.product === productId) {
+              setTonTai(true);
+            }
+          });
+          setListData(items);
+        })
+        .catch((error) => {
+          setListData([]);
         });
-        setListData(items);
-      })
-      .catch((error) => {
-        setListData([]);
-      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleAddToCart = () => {
     {
-      if (tonTai === false) {
-        fetchProductFromCart();
-        postItemToCart(userData, token, product)
-          .then((item) => {
-            console.log("Thêm vào giỏ hàng thành công");
-            refreshProductFromCart();
-            setShowPopup(true);
-          })
-          .catch((error) => {
-            console.error(`Error is: ${error}`);
-          });
-      } else if (tonTai === true) {
-        fetchProductFromCart();
-        putItemInCart("+", product_Exist, token)
-          .then((item) => {
-            console.log("Đã update số lượng sản phẩm", product_Exist);
-            //Chỗ này phải so sánh số lượng đang ở trong giỏ hàng của 1 user, nhiều user với tổng số lượng sp
-            refreshProductFromCart();
-            setShowPopup(true);
-          })
-          .catch((error) => {
-            console.error(`Error is: ${error}`);
-          });
+      try {
+        const id = localStorage.getItem("id");
+        const tokens = localStorage.getItem("token");
+        if (tonTai === false) {
+          fetchProductFromCart();
+          postItemToCart(id, tokens, product)
+            .then((item) => {
+              console.log("Thêm vào giỏ hàng thành công");
+              getCartInformation()
+              refreshProductFromCart();
+              setShowPopup(true);
+            })
+            .catch((error) => {
+              console.error(`Error is: ${error}`);
+            });
+        } else if (tonTai === true) {
+          fetchProductFromCart();
+          putItemInCart("+", product_Exist, tokens)
+            .then((item) => {
+              getCartInformation();
+              console.log("Đã update số lượng sản phẩm", product_Exist);
+              //Chỗ này phải so sánh số lượng đang ở trong giỏ hàng của 1 user, nhiều user với tổng số lượng sp
+              refreshProductFromCart();
+              setShowPopup(true);
+            })
+            .catch((error) => {
+              console.error(`Error is: ${error}`);
+            });
+        }
+      } catch (e) {
+        console.log(e);
       }
     }
     setTonTai(true);
@@ -124,7 +156,7 @@ const Product = (props) => {
     getProduct(productId);
     getAllImages(productId);
     fetchProductFromCart();
-  }, []);
+  }, [productId]);
 
   const getAllImages = (productId) => {
     getListImages(productId)
@@ -141,6 +173,12 @@ const Product = (props) => {
       .then((product) => {
         setThumnail(product.imagepresent);
         setProduct(product);
+        getCategoryById(product.category).then((res) => {
+          setCate(res.name);
+        });
+        getProductByCategory(product.category).then((res) => {
+          setProductRecommend(res);
+        });
       })
       .catch((error) => {
         console.log("Lỗi tải ảnh trong chi tiết sản phẩm");
@@ -161,7 +199,8 @@ const Product = (props) => {
                     return (
                       <div key={index}>
                         <img
-                          style={{ width: 80, height: 80 }}
+                          style={{ width: 80, height: 80, padding: ".1rem" }}
+                          className="detailProduct__smallimg"
                           src={item.img}
                           alt="Detail product"
                           onMouseEnter={() => setThumnail(item.img)}
@@ -195,13 +234,13 @@ const Product = (props) => {
                   Số Lượng:
                 </div>
                 <div className="detailProduct__container__content__quantityContainer__quantity">
-                  <button className="detailProduct__container__content__quantityContainer__quantity__sign">
+                  <button className="detailProduct__container__content__quantityContainer__quantity__sign cursor">
                     -
                   </button>
                   <button className="detailProduct__container__content__quantityContainer__quantity__counter">
                     {counter}
                   </button>
-                  <button className="detailProduct__container__content__quantityContainer__quantity__sign">
+                  <button className="detailProduct__container__content__quantityContainer__quantity__sign cursor">
                     +
                   </button>
                 </div>
@@ -212,7 +251,7 @@ const Product = (props) => {
 
               <div className="detailProduct__container__content__spaceContainer">
                 <button
-                  className="detailProduct__container__content__spaceContainer__button"
+                  className="detailProduct__container__content__spaceContainer__button cursor"
                   onClick={() => handleAddToCart()}
                 >
                   <i
@@ -290,17 +329,47 @@ const Product = (props) => {
         </div>
 
         <div className="detailProduct__container--big">
-          <div className="section">
+          <div className="detailProduct__section section">
             <div className="title">THÔNG TIN CHI TIẾT</div>
-            <table>
-              <tbody>
-                <tr>
-                  <td>Thương hiệu</td>
-                  <td>{product.brand}</td>
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                marginTop: "1rem",
+              }}
+            >
+              <tbody className="detailProduct__container__tablebody">
+                <tr className="detailProduct__container__tablerow">
+                  <td className="detailProduct__container__tablerow--left ">
+                    Thương hiệu
+                  </td>
+                  <td className="detailProduct__container__tablerow--right uppercase">
+                    {product.brand}
+                  </td>
                 </tr>
                 <tr>
-                  <td>Xuất xứ</td>
-                  <td>{product.origin}</td>
+                  <td className="detailProduct__container__tablerow--left">
+                    Xuất xứ
+                  </td>
+                  <td className="detailProduct__container__tablerow--right">
+                    {product.origin}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="detailProduct__container__tablerow--left">
+                    Số lượng kho
+                  </td>
+                  <td className="detailProduct__container__tablerow--right">
+                    {product.quantity}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="detailProduct__container__tablerow--left">
+                    Danh mục
+                  </td>
+                  <td className="detailProduct__container__tablerow--right">
+                    {cate}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -308,21 +377,28 @@ const Product = (props) => {
         </div>
 
         <div className="detailProduct__container--big">
-          <div className="section">
+          <div className="detailProduct__section section">
             <div className="title">MÔ TẢ SẢN PHẨM</div>
             <div className="content">{product.description}</div>
           </div>
         </div>
 
         <div className="detailProduct__container--big">
-          <div className="section">
+          <div className="detailProduct__section section">
             <div className="title">HƯỚNG DẪN SỬ DỤNG</div>
             <div className="content">{product.instruction}</div>
           </div>
         </div>
 
         <div className="detailProduct__container--big">
-          <Rating id={productId} />
+          <div className="detailProduct__section section">
+            <div className="title uppercase">Thành phần sản phẩm</div>
+            <div className="content">{product.Ingredient}</div>
+          </div>
+        </div>
+
+        <div className="detailProduct__container--big">
+          <Rating id={productId} name={product.name}/>
         </div>
 
         <Dialog notify={notify} setNotify={setNotify} />
@@ -333,50 +409,135 @@ const Product = (props) => {
       </div>
       <div>
         <div className="detailProduct__container--right">
-          <div>--MIỄN PHÍ VẬN CHUYỂN--</div>
-          <div style={{ display: "flex", flexDirection: "row" }}>
+          <div className="detailProduct__containerright">
+            <div
+              className="detailProduct__containerright__line"
+              style={{ marginRight: ".5rem" }}
+            ></div>
+            <div className="detailProduct__containerright__content">
+              MIỄN PHÍ VẬN CHUYỂN
+            </div>
+            <div
+              className="detailProduct__containerright__line"
+              style={{ marginLeft: ".5rem" }}
+            ></div>
+          </div>
+          <div className="detailProduct__containerright__footer">
             <img
-              style={{ height: 60, width: 60 }}
+              style={{ height: 80, width: 80 }}
               src="https://hasaki.vn/images/graphics/delivery-120-minutes.png"
             />
-            <div>
+            <div
+              style={{
+                marginLeft: "1rem",
+                fontSize: "1.3rem",
+                textAlign: "justify",
+              }}
+            >
               Giao Nhanh Miễn Phí 2H (Đắk Lắk - Đà Nẵng - Tiền Giang - Kiên
               Giang - Cần Thơ - Vũng Tàu - Bình Dương - Đồng Nai - Hà Nội - HCM)
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "row" }}>
+          <div
+            className="detailProduct__containerright__footer"
+            style={{ display: "flex", flexDirection: "row" }}
+          >
             <img
-              style={{ height: 60, width: 60 }}
+              style={{ height: 80, width: 80 }}
               src="https://hasaki.vn/images/graphics/img_quality_3.png"
             />
-            <div>
+            <div
+              style={{
+                marginLeft: "1rem",
+                fontSize: "1.3rem",
+                textAlign: "justify",
+                alignSelf: "center",
+              }}
+            >
               Phát hiện hàng giả, bạn trả hàng và nhận thêm 110% giá trị.
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "row" }}>
+          <div
+            className="detailProduct__containerright__footer"
+            style={{ display: "flex", flexDirection: "row" }}
+          >
             <img
-              style={{ height: 60, width: 60 }}
+              style={{ height: 80, width: 80 }}
               src="https://hasaki.vn/images/graphics/img_quality_2.png"
             />
-            <div>
+            <div
+              style={{
+                marginLeft: "1rem",
+                fontSize: "1.3rem",
+                textAlign: "justify",
+              }}
+            >
               Giao Hàng Miễn Phí (từ 90K Đắk Lắk - Đà Nẵng - Tiền Giang - Kiên
               Giang - Cần Thơ - Vũng Tàu - Bình Dương - Đồng Nai - Hà Nội - HCM
               trừ huyện, toàn Quốc từ 249K)
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "row" }}>
+          <div
+            className="detailProduct__containerright__footer"
+            style={{ display: "flex", flexDirection: "row" }}
+          >
             <img
-              style={{ height: 60, width: 60 }}
+              style={{ height: 80, width: 80 }}
               src="https://hasaki.vn/images/graphics/img_quality_4.png"
             />
-            <div>Đổi trả trong 14 ngày. </div>
+            <div
+              style={{
+                marginLeft: "1rem",
+                fontSize: "1.3rem",
+                textAlign: "justify",
+                alignSelf: "center",
+              }}
+            >
+              Đổi trả trong 14 ngày.
+            </div>
           </div>
         </div>
         <div
-          className="detailProduct__container--right"
+          className="detailProduct__container--right detailProduct__recommend"
           style={{ marginTop: 10 }}
         >
-          <div>Sản phẩm tương tự</div>
+          <div className="detailProduct__containerright marginBottom">
+            <div
+              className="detailProduct__containerright__line"
+              style={{ marginRight: ".5rem" }}
+            ></div>
+            <div className="detailProduct__containerright__content uppercase">
+              Sản phẩm tương tự
+            </div>
+            <div
+              className="detailProduct__containerright__line"
+              style={{ marginLeft: ".5rem" }}
+            ></div>
+          </div>
+          <Grid col={1} mdCol={1} smCol={1} gap={10}>
+            {productRecommend.length>5?
+            productRecommend.slice(0,5).map((item, index) => (
+              <Link to={`/product/${item.id}`} key={index}>
+                <Pro
+                  src={item.imagepresent}
+                  name={item.name}
+                  price={item.price}
+                  sale={item.sold}
+                />
+              </Link>
+            )) :
+            productRecommend.map((item, index) => (
+              <Link to={`/product/${item.id}`} key={index}>
+                <Pro
+                  src={item.imagepresent}
+                  name={item.name}
+                  price={item.price}
+                  sale={item.sold}
+                />
+              </Link>
+            ))
+          }
+          </Grid>
         </div>
       </div>
       <PopupAddProductToCart

@@ -1,11 +1,70 @@
 .cartItem {
   display: flex;
-  margin: 20px;
-  padding: 16px 0px;
+  margin-top: 20px;
+  padding: 16px 10px;
   border-bottom: 1px solid #e5e5e5;
-
   &__checkbox {
     align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    flex: .05;
+  }
+  &__sp{
+    flex: .45;
+    margin-left: 1rem;
+    display: flex;
+  }
+  &__price{
+    flex: .15;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    color: $main-btn;
+  }
+  &__quan{
+    flex: .15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__icon{
+      font-size: 1rem;
+      color: $black;
+      cursor: pointer;
+    }
+    &__container{
+      display: flex;
+      height: fit-content;
+      justify-content: center;
+      align-items: center;
+      padding: .1rem .8rem;
+      border: solid 1px rgba($color: $black, $alpha: .3);
+    }
+    &__modify{
+      display: flex;
+      flex-direction: column;
+      margin-left: 1.5rem;
+    }
+  }
+  &__st{
+    flex: .1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $main-btn;
+  }
+  &__tt{
+    flex: .1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__btn{
+      height: fit-content;
+      padding: .5rem 2rem;
+      background-color: $main-btn;
+      border: none;
+      color: $white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   }
 }

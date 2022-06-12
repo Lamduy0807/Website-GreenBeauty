@@ -6,31 +6,27 @@ import { SampleNextArrow, SamplePrevArrow } from "./SettingForSlider";
 import { getProductByCategory } from "../../API/Networking";
 const CategoriesDisplayComponent = (props) => {
   const [product, setProduct] = useState([]);
-  const [style, setStyle]=useState('colorBlue')
-  const [bgStyle, setBgStyle] = useState("bgcolorBlue")
+  const [style, setStyle] = useState("colorBlue");
+  const [bgStyle, setBgStyle] = useState("bgcolorBlue");
   useEffect(() => {
     getProductByCategory(props.id).then((res) => {
       setProduct(res);
     });
-    if(props.id===11)
-    {
-      setStyle("colorMain")
-      setBgStyle("bgcolorMain")
+    if (props.id === 11) {
+      setStyle("colorMain");
+      setBgStyle("bgcolorMain");
     }
-    if(props.id===14)
-    {
-      setStyle("colorMiner")
-      setBgStyle("bgcolorMiner")
+    if (props.id === 14) {
+      setStyle("colorMiner");
+      setBgStyle("bgcolorMiner");
     }
-    if(props.id===13)
-    {
-      setStyle("colorBtn")
-      setBgStyle("bgcolorBtn")
+    if (props.id === 13) {
+      setStyle("colorBtn");
+      setBgStyle("bgcolorBtn");
     }
-    if(props.id===15)
-    {
-      setStyle("colorYellow")
-      setBgStyle("bgcolorYellow")
+    if (props.id === 15) {
+      setStyle("colorYellow");
+      setBgStyle("bgcolorYellow");
     }
   }, []);
   const settings = {
@@ -51,10 +47,12 @@ const CategoriesDisplayComponent = (props) => {
         <div className="cdc__header">
           <div className="cdc__header__title">
             <div className="deal__title__left">
-              <h2 className={"cdc__header__title--h2 "+ style}>{props.title}</h2>
+              <h2 className={"cdc__header__title--h2 " + style}>
+                {props.title}
+              </h2>
             </div>
 
-            <div className={"cdc__btn "+ bgStyle}>
+            <div className={"cdc__btn " + bgStyle}>
               <Link to={props.link} className="cdc__btn--btn">
                 Xem tất cả
               </Link>
@@ -66,14 +64,16 @@ const CategoriesDisplayComponent = (props) => {
             {product.map((item, index) => {
               return (
                 <div key={index}>
-                  <Product
-                    name={item.name}
-                    price={item.price}
-                    sale={item.sold}
-                    src={item.imagepresent}
-                    brand={item.brand}
-                    id={item.id}
-                  />
+                  <Link to={`/product/${item.id}`} key={index}>
+                    <Product
+                      name={item.name}
+                      price={item.price}
+                      sale={item.sold}
+                      src={item.imagepresent}
+                      brand={item.brand}
+                      id={item.id}
+                    />
+                  </Link>
                 </div>
               );
             })}

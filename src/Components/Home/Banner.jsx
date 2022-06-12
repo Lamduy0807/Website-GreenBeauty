@@ -86,7 +86,7 @@ const Banner = () => {
           />
         </div>
       </div>
-      <ListCategory/>
+      {/* <ListCategory/> */}
     </div>
   );
 };

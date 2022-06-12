@@ -43,8 +43,8 @@ const Cart = () => {
           } else {
             history.push({
               pathname: "/checkout",
-              search: '?query=abc',
-              state:  listDataSelect ,
+              search: "?query=abc",
+              state: listDataSelect,
             });
             console.log("Đã có địa chỉ");
           }
@@ -65,49 +65,70 @@ const Cart = () => {
           <EmptyCart />
         ) : (
           <div className="cartScreen">
-            <div>Giỏ hàng ({cartData.length} sản phẩm)</div>
-            <div className="cartScreen__header">
-              <div className="cartScreen__header__checkbox">
-                <label>
-                  <input type="checkbox"></input>
-                </label>
+            <div className="cartScreen__container">
+              <div className="cartScreen__tilte">
+                Giỏ hàng{" "}
+                <div className="cartScreen__tilte--small">
+                  ({cartData.length} sản phẩm)
+                </div>
               </div>
-              <div className="cartScreen__header__sp">Sản phẩm</div>
-              <div className="cartScreen__header__dg">Đơn giá</div>
-              <div className="cartScreen__header__sl">Số lượng</div>
-              <div className="cartScreen__header__st">Số tiền</div>
-              <div className="cartScreen__header__tt">Thao tác</div>
-            </div>
-
-            <div className="cartScreen__list">
-              {cartData.map((item, index) => (
-                <CartItem key={index} item={item} handleSelect={handleSelect} />
-              ))}
-            </div>
-            <div className="cartScreen__buy">
-              <div className="cartScreen__buy__checkbox">
-                <label>
-                  <input type="checkbox"></input>
-                </label>
-                <label>Chọn tất cả ({cartData.length})</label>
+              <div className="cartScreen__header">
+                <div className="cartScreen__header__checkbox">
+                  <label>
+                    <input type="checkbox"></input>
+                  </label>
+                </div>
+                <div className="cartScreen__header__sp colorBlack">
+                  Sản phẩm
+                </div>
+                <div className="cartScreen__header__dg colorBlack">Đơn giá</div>
+                <div className="cartScreen__header__sl colorBlack">
+                  Số lượng
+                </div>
+                <div className="cartScreen__header__st colorBlack">Số tiền</div>
+                <div className="cartScreen__header__tt colorBlack">
+                  Thao tác
+                </div>
               </div>
 
-              <div>Xóa</div>
-              <div>Tổng thanh toán (0 sản phẩm): 0đ</div>
-              <button onClick={handleBuyProduct}>
-                <div>Mua hàng</div>
-              </button>
-            </div>
-            <Popup trigger={showPopup} setTrigger={setShowPopup}>
-              <p>Bạn vẫn chưa chọn sản phẩm nào để mua.</p>
-            </Popup>
+              <div className="cartScreen__list">
+                {cartData.map((item, index) => (
+                  <CartItem
+                    key={index}
+                    item={item}
+                    handleSelect={handleSelect}
+                  />
+                ))}
+              </div>
+              <div className="cartScreen__buy">
+                <div className="cartScreen__buy__left">
+                  <div className="cartScreen__buy__checkbox">
+                    <label className="cartScreen__buy__align">
+                      <input type="checkbox"></input>
+                    </label>
+                    <label className="cartScreen__buy__checkbox__lb">Chọn tất cả ({cartData.length})</label>
+                  </div>
+                  <div className="cartScreen__buy__left__delete" >Xóa</div>
+                </div>
 
-            <Popup
-              trigger={showPopupEmptyAddress}
-              setTrigger={setShowPopupEmptyAddress}
-            >
-              <p>Bạn chưa thêm địa chỉ giao hàng.</p>
-            </Popup>
+                <div className="cartScreen__buy__right">
+                  <div className="cartScreen__buy__right__title">Tổng thanh toán ({cartData.length} sản phẩm): 0đ</div>
+                  <button className="cartScreen__buy__right__button" onClick={handleBuyProduct}>
+                    Mua hàng
+                  </button>
+                </div>
+              </div>
+              <Popup trigger={showPopup} setTrigger={setShowPopup}>
+                <p>Bạn vẫn chưa chọn sản phẩm nào để mua.</p>
+              </Popup>
+
+              <Popup
+                trigger={showPopupEmptyAddress}
+                setTrigger={setShowPopupEmptyAddress}
+              >
+                <p>Bạn chưa thêm địa chỉ giao hàng.</p>
+              </Popup>
+            </div>
           </div>
         )}
       </div>

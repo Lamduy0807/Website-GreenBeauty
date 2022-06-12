@@ -4,9 +4,32 @@
   flex-direction: row;
   justify-content: center;
   &__container {
+    
     box-sizing: border-box;
     background-color: white;
     display: flex;
+
+    &__tablebody{
+      display: table-row-group;
+      vertical-align: middle;
+      border-color: inherit;
+      width: 100%;
+    }
+    &__tablerow{
+      border-color: $textcolor;
+      width: 100%;
+      &--left{
+        width: 30%;
+        border: 1px solid #eaeaea;
+        padding: 1rem;
+        background-color:  #f7f7f7;
+      }
+      &--right
+      {
+        border: 1px solid #eaeaea;
+        padding: 1rem;
+      }
+    }
 
     &--big {
       max-width: 1000px;
@@ -14,7 +37,7 @@
     }
 
     &--right{
-      max-width: 250px;
+      max-width: 265px;
       display: flex;
       flex-direction: column;
       margin-left: 10px;
@@ -26,7 +49,6 @@
     &__imageContainer {
       display: flex;
       flex-direction: column;
-     
     }
 
     &__content {
@@ -134,13 +156,45 @@
       }
     }
   }
+  &__smallimg{
+    &:hover{
+      background-color: $main-btn;
+    }
+  }
+  &__containerright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    &__line{
+      height: 1px;
+      background-color: $main-bg;
+      flex: 1;
+    }
+    &__content{
+      color: $main-bg;
+    }
+    &__footer{
+      display: flex;
+      flex-direction: row;
+      padding: 1rem .5rem;
+    }
+  }
+  &__section{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  &__recommend{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem .5rem;
+  }
 }
 
 .section {
   background-color: white;
   margin-top: 10px;
-  padding-top: 20px;
-  padding-left: 20px;
 }
 
 .title {
@@ -149,14 +203,19 @@
   font-size: 18px;
 }
 .content {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: normal;
-
+  margin-top: 1rem;
+  text-align: justify;
   // font-family: Arial, Helvetica, sans-serif;
   color: black;
+  padding: 0 2rem 0 0;
 }
 
 .mainImage{
   height: 345px;
   width: 345px;
+}
+.uppercase{
+  text-transform: uppercase;
 }
