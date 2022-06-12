@@ -1,0 +1,31 @@
+.product-rating {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  display: flex;
+  padding: 1rem 0 1rem 1.25rem;
+  &__main {
+    flex: 1;
+  }
+  &__author-name {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 12px;
+  }
+  &__time {
+    margin-top: 12px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+  &__content{
+    position: relative;
+    box-sizing: border-box;
+    margin: 15px 0px;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0,0,0,.87);
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+  &__image-list{
+    margin-top: 15px;
+  }
+}

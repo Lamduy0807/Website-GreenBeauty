@@ -4,13 +4,16 @@ import Slider from "react-slick";
 import FlashSaleProduct from "./FlashSaleProduct";
 import { getProduct } from "../../API/Networking";
 import { settings } from "./SettingForSlider";
+import { formatNumber } from "../../Function/Function";
+
+
 const Deals = () => {
   const [flProduct, setFlProduct] = useState([]);
   useEffect(() => {
     GetData();
   }, []);
 
-  const GetData = () => { 
+  const GetData = () => {
     getProduct().then((re) => {
       re.forEach((item) => {
         if (item.IsFlashsale === true) {
@@ -28,7 +31,9 @@ const Deals = () => {
             <h2 className="deal__title__left--h2">Deals đang diễn ra</h2>
           </div>
           <div className="deal__title__right">
-            <Link to={'/'} className="deal__title__right--btn">Xem tất cả</Link>
+            <Link to={"/"} className="deal__title__right--btn">
+              Xem tất cả
+            </Link>
           </div>
         </div>
         <div className="deal__fl">

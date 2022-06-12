@@ -1,0 +1,21 @@
+.checkout {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: auto;
+
+  &__address {
+    background-color: white;
+    &__title {
+    }
+    &__content {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__list-product {
+    margin-top: 10px;
+    background-color: white;
+  }
+}

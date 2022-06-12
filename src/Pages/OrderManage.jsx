@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SideMenu from "../Components/MenuProfile/SideMenu";
 import OrderComponent from "../Components/MenuProfile/OrderComponent";
 import { getOrderInformation } from "../API/Networking";
+import { formatNumber } from "../Function/Function";
 const OrderManage = () => {
   const tabs = [
     { name: "Chờ xác nhận" },
@@ -71,7 +72,7 @@ const OrderManage = () => {
                 { active===0?
                   pending.map((item,index)=>{
                     return(
-                      <OrderComponent  key={index} id={item.id} status={item.status} totalValue={item.totalValue}/>
+                      <OrderComponent  key={index} id={item.id} status={item.status} totalValue={formatNumber(item.totalValue+'')}/>
                     )
                   })
                   :
@@ -89,7 +90,7 @@ const OrderManage = () => {
                 { active===1?
                   waiting.map((item,index)=>{
                     return(
-                      <OrderComponent   key={index} id={item.id} status={item.status} totalValue={item.totalValue}/>
+                      <OrderComponent   key={index} id={item.id} status={item.status} totalValue={formatNumber(item.totalValue+'')}/>
                     )
                   })
                   :
@@ -108,7 +109,7 @@ const OrderManage = () => {
                 { active===2?
                   delivery.map((item,index)=>{
                     return(
-                      <OrderComponent  key={index} id={item.id} status={item.status} totalValue={item.totalValue}/>
+                      <OrderComponent  key={index} id={item.id} status={item.status} totalValue={formatNumber(item.totalValue+'')}/>
                     )
                   })
                   :
@@ -127,7 +128,7 @@ const OrderManage = () => {
                 { active===3?
                   success.map((item,index)=>{
                     return(
-                      <OrderComponent  key={index} id={item.id} status={item.status} totalValue={item.totalValue}/>
+                      <OrderComponent  key={index} id={item.id} status={item.status} totalValue={formatNumber(item.totalValue+'')}/>
                     )
                   })
                   :
@@ -146,7 +147,7 @@ const OrderManage = () => {
                 { active===4?
                   orderData.map((item,index)=>{
                     return(
-                      <OrderComponent  key={index} id={item.id} status={item.status} totalValue={item.totalValue}/>
+                      <OrderComponent  key={index} id={item.id} status={item.status} totalValue={formatNumber(item.totalValue+'')}/>
                     )
                   })
                   :

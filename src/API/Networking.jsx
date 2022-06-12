@@ -101,6 +101,7 @@ async function getUserInformation(id, token) {
     });
 
     let responseJson = await response.json();
+    console.log("user infomation:", responseJson)
     return responseJson;
   } catch (error) {
     console.error(`Error is: ${error}`);
@@ -146,6 +147,21 @@ async function getProductById(id) {
     'http://' + SERVER_NAME + '/product/' + id + '/?IsActive=true';
   try {
     let response = await fetch(apiGetProductById, {
+      method: 'GET',
+    });
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
+
+//Api get list image
+async function getListImage(id) {
+  const apiListImage =
+    'http://' + SERVER_NAME + '/img/?product=' + id ;
+  try {
+    let response = await fetch(apiListImage, {
       method: 'GET',
     });
     let responseJson = await response.json();
@@ -634,6 +650,7 @@ export {
   postRatingInformation,
   getSearchProduct,
   getSearchProductWithFiltering,
+  getListImage,
   getDeliveryInformationById,
   getOrderInformationById,
   postForgotPassword

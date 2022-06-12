@@ -1,0 +1,53 @@
+.rating {
+  background-color: white;
+  margin-top: 10px;
+  padding-top: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  &__header {
+    color: black;
+  }
+
+  &__overview {
+    background-color: #fffbf8;
+     min-height: 80px;
+    border: 1px solid #f9ede5;
+     margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 32px;
+
+    &__total {
+      margin-right: 30px;
+      &__left {
+        color: #d0011b;
+      }
+      &__right {
+        cursor: pointer;
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.09);
+        box-sizing: border-box;
+        display: inline-block;
+        height: 32px;
+        line-height: 32px;
+        min-width: 100px;
+        text-align: center;
+        padding: 0px 10px;
+        margin-right: 8px;
+        text-decoration: none;
+        text-transform: capitalize;
+        border-radius: 2px;
+        margin-bottom: 5px;
+        margin-top:5px;
+      }
+    }
+  }
+
+  &__list{
+
+  }
+}
