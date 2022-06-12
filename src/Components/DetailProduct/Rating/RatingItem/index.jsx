@@ -1,23 +1,47 @@
 import React, { useState, useEffect } from "react";
-
-export const RatingItem = ({ item }) => {
+import { getUserInformation } from "../../../../API/Networking";
+export const RatingItem = ({ item, name }) => {
+  const maxStar = [1, 2, 3, 4, 5];
+  const [user, setUser] = useState([]);
   useEffect(() => {
-    console.log("item: ", item);
+    try {
+      console.log(item);
+      const token = localStorage.getItem("token");
+      getUserInformation(item.user, token).then((res) => {
+        setUser(res);
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
   return (
     <div className="product-rating">
-      <div>avt</div>
       <div className="product-rating__main">
-        <a className="product-rating__author-name">{item.user} ThanhNgapy2k1</a>
-        <div className="product-rating__time">dd/mm/yy 00:00</div>
+        <div className="product-rating__main__header">
+          <div className="product-rating__main__header--right">
+          <span className=" orange displayblock">
+            {maxStar.map((it, key) => {
+              return (
+                <i
+                  key={key}
+                  className={
+                    it <= item.ratingpoint ? "bx bxs-star" : "bx bx-star"
+                  }
+                ></i>
+              );
+            })}
+          </span>
+          <span className="product-rating__author-name">{user.name}</span>
+          <span className="product-rating__name">{name}</span>
+          </div>
+          <div className="product-rating__time">{item.dayandtime}</div>
+        </div>
 
         <div className="product-rating__content">{item.ratingcomment}</div>
         <div>
           <img
             style={{ height: 80, width: 80 }}
-            src={
-              "https://media.hasaki.vn/catalog/product/d/u/dung-dich-loai-bo-te-bao-chet-paula-s-choice-bha-2-30ml-2_img_80x80_d200c5_fit_center.jpg"
-            }
+            src={`http://127.0.0.1:8000${item.img}`}
             alt="image rating"
           />
         </div>

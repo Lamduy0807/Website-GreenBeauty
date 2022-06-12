@@ -1,68 +1,81 @@
 .cartScreen {
   width: 100%;
   box-sizing: border-box;
-  max-width: 1200px;
-  margin: auto;
-
+  
+  &__container{
+    max-width: 1200px;
+    margin: auto;
+  }
+  &__tilte{
+    font-size: 2rem;
+    padding: 1rem .5rem;
+    color: $black;
+    display: flex;
+    &--small{
+      font-size: 2rem;
+      color: $textcolor;
+      margin-left: .5rem;
+    }
+  }
   &__header {
     background-color: white;
     display: flex;
     align-items: center;
     overflow: hidden;
     border-radius: 3px;
-    height: 55px;
     font-size: 14px;
     background: #fff;
     text-transform: capitalize;
-    margin-bottom: 12px;
     color: #888;
-    padding: 0 20px;
+    padding: 2rem 10px;
 
     &__checkbox {
-      padding: 0 12px 0 20px;
-      min-width: 58px;
+      flex: .05;
       display: flex;
       flex-direction: row-reverse;
       box-sizing: border-box;
-      font-size: 14px;
+      font-size: 20px;
       text-transform: capitalize;
       color: #888;
     }
 
     &__sp {
+      margin-left: 1rem;
       color: rgba(0, 0, 0, 0.8);
-      width: 46.27949%;
-      font-size: 14px;
+      flex: .45;
+      font-size: 20px;
       text-transform: capitalize;
       color: #888;
     }
 
     &__dg {
-      width: 15.88022%;
+      flex: .15;
       text-align: center;
-      font-size: 14px;
+      font-size: 20px;
       text-transform: capitalize;
       color: #888;
     }
 
     &__sl {
-      width: 15.4265%;
+      flex: .15;
       text-align: center;
-      font-size: 14px;
+      font-size: 20px;
       text-transform: capitalize;
       color: #888;
     }
 
     &__st {
+      flex: .10;
       text-align: center;
-      font-size: 14px;
+      font-size: 20px;
       text-transform: capitalize;
       color: #888;
     }
 
     &__tt {
-      width: 12.70417%;
-      font-size: 14px;
+      flex: .10;
+      font-size: 20px;
+      text-align: center;
       text-transform: capitalize;
       color: #888;
     }
@@ -70,24 +83,63 @@
 
   &__list {
     background-color: white;
-    padding-left: 50px;
   }
   &__buy{
     background-color: white;
     margin-top: 20px;
+    padding: 1rem;
     display: flex;
-
     flex-direction: row;
-
+    justify-content: space-between;
+    &__align{
+      display: flex;
+      align-items: center;
+    }
+    &__left{
+      display: flex;
+      align-items: center;
+      &__delete{
+        color: rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+        margin-left: 3rem;
+      }
+    }
+    &__right{
+      display: flex;
+      align-items: center;
+      &__title{
+        color: $black;
+        margin-right: 2rem;
+      }
+      &__button{
+        padding: 1rem 5rem;
+        background-color: $main-btn;
+        border: none;
+        color: $white;
+        border-radius: 5px;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+    }
     &__checkbox{
       padding: 0 12px 0 20px;
       min-width: 58px;
       display: flex;
+      align-items: center;
       box-sizing: border-box;
       font-size: 14px;
       text-transform: capitalize;
       color: #888;
+      &__lb{
+        font-size: 1.5rem;
+        margin-left: 2rem;
+        display: flex;
+        align-items: center;
+      }
     }
 
   }
+}
+.colorBlack{
+  color: rgba(0, 0, 0, 0.6);
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {formatNumber} from "../../Function/Function"
 const Product = (props) => {
   return (
     <div className='pro'>
@@ -14,7 +14,7 @@ const Product = (props) => {
             <br></br>
             <div className="pro__infor__content">
               <div className="pro__infor__price">
-                  {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(props.price)}
+                  {formatNumber(props.price+"")} đ
                   {/* <div className='pro__infor__price--currency'>đ</div>  */}
               </div>
 

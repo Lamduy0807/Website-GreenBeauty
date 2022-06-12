@@ -5,6 +5,7 @@ import ProductComponent from "./ProductComponent";
 import { getDetailOrderInformation, putConfirmDelivery, putCanceDlelivery} from "../../API/Networking";
 import {ModalContext} from '../../Context/ModelContext/ModalContext'
 import { Link } from "react-router-dom";
+import {formatNumber} from "../../Function/Function"
 const OrderComponent = (props) => {
   const { setDetailData, setShowRating } = useContext(ModalContext);
   const [detailProduct, setDetailProduct] = useState([]);
@@ -97,7 +98,7 @@ const OrderComponent = (props) => {
               onClick={handleCancelDelivery}
               className={
                 props.status === "1"
-                  ? "button orderCom__btngroup--white"
+                  ? "button orderCom__btngroup--active"
                   : "displaynone"
               }
             >

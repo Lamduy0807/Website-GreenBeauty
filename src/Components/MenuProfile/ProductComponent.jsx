@@ -28,7 +28,7 @@ const ProductComponent = (props) => {
         <div className="orderCom__product__price">
           <span className="orderCom__product__price--text">đ</span>
           <span className="orderCom__product__price--price">
-            {formatNumber(product.price)}
+            {formatNumber(product.price+"")}
           </span>
         </div>
       </div>

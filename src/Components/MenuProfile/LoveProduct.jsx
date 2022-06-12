@@ -1,5 +1,5 @@
 import React from "react";
-
+import { formatNumber } from "../../Function/Function";
 const LoveProduct = (props) => {
   return (
     <div className="lp">
@@ -29,7 +29,7 @@ const LoveProduct = (props) => {
         <div className="lp__price">
           {props.IsFlashsale ? (
             <div className="lp__price__sale">
-              {props.priceSale}
+              {formatNumber(props.priceSale+ "")}
               <span className="lp__price__d">đ</span>
             </div>
           ) : null}
@@ -40,7 +40,7 @@ const LoveProduct = (props) => {
                 : "lp__price__main"
             }
           >
-            {props.price}
+            {formatNumber(props.price+"")}
             <span className="lp__price__d">đ</span>
           </div>
         </div>

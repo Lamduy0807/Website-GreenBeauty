@@ -5,7 +5,7 @@ import { putItemInCart } from "../../API/Server";
 import { UserContext } from "../../Context/UserContext/UserContext";
 import { CartContext } from "../../Context/CartContext/CartContext";
 import { deleteProductFromCart } from "../../API/Server";
-
+import { formatNumber } from "../../Function/Function";
 export const CartItem = ({ item, handleSelect }) => {
   const productID = item.product;
   const { token, userData } = useContext(UserContext);
@@ -44,16 +44,13 @@ export const CartItem = ({ item, handleSelect }) => {
       });
   };
 
- 
- //Chưa xử lý dc
+  //Chưa xử lý dc
   const handleDeleteProduct = () => {
     deleteProductFromCart()
-    .then(()=>console.log("đã xóa sản phẩm khỏi giỏ hàng"))
-    .catch((error) => {
-      console.log(
-        "xóa sp khỏi giót hàng thất bại"
-      );
-    });
+      .then(() => console.log("đã xóa sản phẩm khỏi giỏ hàng"))
+      .catch((error) => {
+        console.log("xóa sp khỏi giót hàng thất bại");
+      });
   };
 
   const btnSub = () => {
@@ -92,23 +89,32 @@ export const CartItem = ({ item, handleSelect }) => {
           ></input>
         </label>
       </div>
-      <div>
+      <div className="cartItem__sp">
         <img
           style={{ height: 80, width: 80 }}
           src={product.imagepresent}
           alt="thumnail"
         />
+        <div style={{marginLeft:".5rem"}}>{product.name}</div>
       </div>
 
-      <div>{product.name}</div>
-      <div>{product.price}</div>
-      <div>
-        <button onClick={btnSub}>-</button>
+      <div className="cartItem__price">{formatNumber(product.price+"")} đ</div>
+      <div className="cartItem__quan">
+        <div className="cartItem__quan__container">
+            {quantity}
+            <div className="cartItem__quan__modify">
+              <i onClick={btnPlus} className='bx bxs-up-arrow cartItem__quan__icon'></i>
+              <i onClick={btnSub} className='bx bxs-down-arrow cartItem__quan__icon' ></i>
+            </div>
+        </div>
+        {/* <button onClick={btnSub}>-</button>
         <button>{quantity}</button>
-        <button onClick={btnPlus}>+</button>
+        <button onClick={btnPlus}>+</button> */}
       </div>
-
-      <button>Xóa</button>
+      <div className="cartItem__st">{formatNumber(product.price*quantity + "")} đ</div>
+      <div className="cartItem__tt">
+        <button className="cartItem__tt__btn">Xóa</button>
+      </div>
     </div>
   );
 };

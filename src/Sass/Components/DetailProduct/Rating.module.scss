@@ -11,7 +11,7 @@
 
   &__overview {
     background-color: #fffbf8;
-     min-height: 80px;
+    min-height: 80px;
     border: 1px solid #f9ede5;
      margin-bottom: 16px;
     display: flex;
@@ -23,8 +23,23 @@
 
     &__total {
       margin-right: 30px;
+      display: flex;
       &__left {
-        color: #d0011b;
+        color: $main-btn;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &__rating{
+          font-size: 80px;
+        }
+        &__star{
+          font-size: 1.5rem;
+        }
+        &__div{
+          font-size: 1.5rem;
+          color: rgba(0, 0, 0, 0.6);
+        }
       }
       &__right {
         cursor: pointer;
@@ -43,11 +58,12 @@
         border-radius: 2px;
         margin-bottom: 5px;
         margin-top:5px;
+        &--active{
+          border: none;
+          background-color: $main-btn;
+          color: $white;
+        }
       }
     }
-  }
-
-  &__list{
-
   }
 }

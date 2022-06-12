@@ -39,15 +39,12 @@ const FlashSaleProduct = (props) => {
 
           <div className="fsp__infor__content">
             <div className="fsp__infor__sale">
-              {props.sale}
+              {formatNumber(props.sale+"")}
               <div className="fsp__infor__price--currency">đ</div>
             </div>
             <div className="fsp__infor__price">
               {/* {formatNumber(props.price)} */}
-              {Intl.NumberFormat("vi-VN", {
-                style: "currency",
-                currency: "VND",
-              }).format(props.price)}
+              {formatNumber(props.price+"")} đ
               {/* <div className="fsp__infor__price--currency">đ</div> */}
             </div>
           </div>
@@ -67,10 +64,7 @@ const FlashSaleProduct = (props) => {
               Chỉ còn
             </span>
             <span className="fsp__back__content__cta--value orange displayblock">
-              {Intl.NumberFormat("vi-VN", {
-                style: "currency",
-                currency: "VND",
-              }).format(props.sale)}
+              {formatNumber(props.sale + "")} đ
             </span>
             <span className="fsp__back__content__cta--only displayblock">
               ({numberRating})<br></br>
