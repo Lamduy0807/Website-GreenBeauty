@@ -566,6 +566,58 @@ async function getSearchProductWithFiltering(query, filter) {
     }
   }
 }
+async function getOrderInformationById(id) {
+  const apiGetOrderInformation = "http://" + SERVER_NAME + "/order/" + id + "/";
+  try {
+    let response = await fetch(apiGetOrderInformation, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 200) {
+      let responseJson = await response.json();
+      return responseJson;
+    } else return "";
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
+async function getDeliveryInformationById(id) {
+  const apiGetOrderInformation = "http://" + SERVER_NAME + "/delivery/" + id + "/";
+  try {
+    let response = await fetch(apiGetOrderInformation, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 200) {
+      let responseJson = await response.json();
+      return responseJson;
+    } else return "";
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
+const postForgotPassword = async (email) => {
+  const apiPostLogin = "http://" + SERVER_NAME + "/request-reset-email/";
+  try {
+    let response = await fetch(apiPostLogin, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email }),
+    });
+    return response.status;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+};
 export {
   putCanceDlelivery,
   putConfirmDelivery,
@@ -598,5 +650,8 @@ export {
   postRatingInformation,
   getSearchProduct,
   getSearchProductWithFiltering,
-  getListImage
+  getListImage,
+  getDeliveryInformationById,
+  getOrderInformationById,
+  postForgotPassword
 };
