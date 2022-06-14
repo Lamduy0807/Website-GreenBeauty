@@ -66,7 +66,8 @@ async function getDataUser(userData, accessToken) {
 //---
 //Api thêm item vào giỏ hàng
 async function postItemToCart(userData, accessToken, product, counter) {
-  console.log("productID:", product.id)
+  //console.log("productID:", product.id)
+  console.log("asdsadsadasd: ",product);
   const apiAddItemToCart = "http://" + SERVER_NAME + "/cart/";
   try {
     let response = await fetch(apiAddItemToCart, {
@@ -79,7 +80,7 @@ async function postItemToCart(userData, accessToken, product, counter) {
 
       body: JSON.stringify({
         quantities: counter,
-        product: product.id,
+        product: product,
         user: userData,
       }),
     });

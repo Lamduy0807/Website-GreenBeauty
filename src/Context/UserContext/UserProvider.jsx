@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { UserContext } from './UserContext'
-import { getUserInformation } from '../../API/Networking';
+import { getUserInformation, getDefaultAddress } from '../../API/Networking';
 const UserProvider = ({children}) => {
 
   const [userData, setUserData] = useState();
   const [userAvt, setUserAvt] = useState('');
   const [userName, setUserName] = useState("")
   const [showUpdate, setShowUpdate] = useState(false);
+  const [showUpdateDelivery, setShowUpdateDelivery] = useState(false)
   const [token, setToken] = useState("")
     useEffect(()=>{
         getUserInfor();
@@ -16,7 +17,11 @@ const UserProvider = ({children}) => {
             const id = localStorage.getItem('id')
             const tokens = localStorage.getItem('token')
             setToken(tokens);
-            if(id>0)
+            if(id>0){
+                getDefaultAddress(id, tokens).then(res=>{
+                  if(res.length === 0)
+                    setShowUpdateDelivery(true)
+                })
                 getUserInformation(id,tokens).then(res=>{
                     setUserData(res)
                     setUserAvt(res.avt)
@@ -29,6 +34,7 @@ const UserProvider = ({children}) => {
                       setUserName(handleSplit(res.name))
                     }
                 })
+              }
             else{
               setUserName('')
             }
@@ -43,7 +49,7 @@ const UserProvider = ({children}) => {
     }
     
   return (
-    <UserContext.Provider value={{userAvt, userData,setUserData, getUserInfor, userName,showUpdate, setShowUpdate, token}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{showUpdateDelivery, setShowUpdateDelivery, userAvt, userData,setUserData, getUserInfor, userName,showUpdate, setShowUpdate, token}}>{children}</UserContext.Provider>
   )
 }
 

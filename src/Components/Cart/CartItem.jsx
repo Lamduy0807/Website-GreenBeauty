@@ -134,7 +134,8 @@ export const CartItem = ({ item, handleSelect, handlePlus, handleSub }) => {
         {formatNumber(product.price * quantity + "")} đ
       </div>
       <div onClick={handleDeleteProduct} className="cartItem__tt">
-        <button className="cartItem__tt__btn">Xóa</button>
+        <i class='bx bxs-trash orange cursor' ></i>
+        {/* <button className="cartItem__tt__btn">Xóa</button> */}
       </div>
     </div>
   );

@@ -618,7 +618,29 @@ const postForgotPassword = async (email) => {
     console.error(`Error is: ${error}`);
   }
 };
+async function getDefaultAddress(id, token) {
+  const apiGetAddress =
+    'http://' +
+    SERVER_NAME +
+    '/delivery/?user=' +
+    id +
+    '&defaultAddress=1'
+  try {
+    let response = await fetch(apiGetAddress, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'application/json',
+      },
+    });
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
 export {
+  getDefaultAddress,
   putCanceDlelivery,
   putConfirmDelivery,
   postAddress,

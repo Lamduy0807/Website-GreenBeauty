@@ -45,7 +45,7 @@ const Product = (props) => {
 
   const numberRating = (sumValue, numberRating) => {
     setNumRating(numberRating);
-    setStartPoint(sumValue / numberRating);
+    setStartPoint(numRating===0? 0 : sumValue / numberRating);
   };
   const settings = {
     dots: true,
@@ -57,6 +57,13 @@ const Product = (props) => {
     prevArrow: <SamplePrevArrow />,
   };
 
+  useEffect(() => {
+    setTonTai(false);
+    setProduct_Exist("")
+    getProduct(productId);
+    getAllImages(productId);
+    fetchProductFromCart();
+  }, [productId]);
   //fetch dữ liệu giỏ hàng
   const fetchProductFromCart = () => {
     try {
@@ -102,12 +109,13 @@ const Product = (props) => {
 
   const handleAddToCart = () => {
     {
+      console.log("Addd: ", productId);
       try {
         const id = localStorage.getItem("id");
         const tokens = localStorage.getItem("token");
         if (tonTai === false) {
           fetchProductFromCart();
-          postItemToCart(id, tokens, product, counter)
+          postItemToCart(id, tokens, productId, counter)
             .then((item) => {
               console.log("Thêm vào giỏ hàng thành công");
               getCartInformation();
@@ -205,13 +213,6 @@ const Product = (props) => {
   const btnSub = () => {
     setCounter(counter - 1);
   };
-
-  useEffect(() => {
-    getProduct(productId);
-    getAllImages(productId);
-    fetchProductFromCart();
-  }, [productId]);
-
   const getAllImages = (productId) => {
     getListImages(productId)
       .then((products) => {
@@ -271,10 +272,10 @@ const Product = (props) => {
               </div>
               <div className="detailProduct__container__content__slidebar">
                 <div className="detailProduct__container__content__slidebar__space">
-                 {numRating} Nhận Xét
+                 {numRating===undefined? 0 : numRating.toFixed()} Nhận Xét
                 </div>
                 <div className="detailProduct__container__content__slidebar__space">
-                  {startPoint} Đánh Giá
+                  {startPoint === 0? 0 : startPoint.toFixed(1)} Đánh Giá
                 </div>
                 <div className="detailProduct__container__content__slidebar__space">
                   {product.sold} Đã Bán 

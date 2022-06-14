@@ -1,5 +1,9 @@
 .register{
   @extend .login;
+    &__container1
+    {
+        min-width: 800px;
+    }
     &__container{
         @extend .login__container;
         &__exit{
