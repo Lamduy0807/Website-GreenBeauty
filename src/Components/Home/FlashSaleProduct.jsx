@@ -9,7 +9,6 @@ import {
   putItemInCart,
 } from "../../API/Server";
 import { getProductById } from "../../API/Networking";
-
 const FlashSaleProduct = (props) => {
   const maxStar = [1, 2, 3, 4, 5];
   const [numberRating, setNumberRating] = useState(0);
@@ -166,7 +165,7 @@ const FlashSaleProduct = (props) => {
         <div className="fsp__back__content">
           <div className="fsp__back__content__cta">
             <span className="fsp__back__content__cta--avg displayblock">
-              {props.name}
+              {props.brand}
             </span>
             <span className="fsp__back__content__cta--only displayblock">
               Chỉ còn
@@ -194,7 +193,7 @@ const FlashSaleProduct = (props) => {
 
             <button
               onClick={handleAddToCart}
-              className="btn btn--white btn__animated"
+              className="btn btn--white btn__animated btn__visited"
             >
               Add to Cart
             </button>

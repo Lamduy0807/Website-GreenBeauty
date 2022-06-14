@@ -29,6 +29,15 @@
       font-size: 1.6rem;
       position: relative;
     }
+    &__visited {
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 40px;
+      display: inline-block;
+      border-radius: $border-radious-btn;
+      font-size: 1.6rem;
+      position: relative;
+    }
     &::after{
         content: "";
         display: inline-block;

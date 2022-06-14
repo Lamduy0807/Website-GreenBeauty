@@ -7,10 +7,11 @@ import { useHistory } from "react-router-dom";
 import { getAddressDelivery } from "../API/Server";
 import { Popup } from "../Components/Cart/Popup";
 import { formatNumber } from "../Function/Function";
-
+import { getCart } from "../API/Networking";
 const Cart = () => {
-  const { cartData } = useContext(CartContext);
+  const { cartData, getCartInformation } = useContext(CartContext);
   const { token, userData } = useContext(UserContext);
+  const [productCart, setProductCart] = useState([])
   const [showPopup, setShowPopup] = useState(false);
   const [showPopupEmptyAddress, setShowPopupEmptyAddress] = useState(false);
   const [selected, setSelected] = useState(0);
@@ -19,6 +20,17 @@ const Cart = () => {
   const history = useHistory();
 
 //handle check tất cả
+useEffect(()=>{
+  try{
+    const id = localStorage.getItem('id')
+    getCart(id).then(res=>{
+      setProductCart(res)
+    })
+  }catch(e)
+  {
+    console.log(e);
+  }
+},[cartData])
 
 const selectAll=(product, quantity)=>{
   listDataSelect.forEach(item=>{
@@ -107,7 +119,7 @@ const selectAll=(product, quantity)=>{
             </div>
 
             <div className="cartScreen__list">
-              {cartData.map((item, index) => (
+              {productCart.map((item, index) => (
                 <CartItem
                   key={index}
                   item={item}
