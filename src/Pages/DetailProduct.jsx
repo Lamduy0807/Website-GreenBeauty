@@ -1,32 +1,32 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Rating from "../Components/DetailProduct/Rating/Rating";
+import Slider from "react-slick";
+import { PopupAddProductToCart } from "../Components/Cart/Popup";
+import Grid from "../Components/Grid";
+import { default as Pro } from "../Components/Home/Product";
+import { CartContext } from "../Context/CartContext/CartContext";
+import { formatNumber } from "../Function/Function";
+import {
+  SampleNextArrow,
+  SamplePrevArrow,
+} from "../Components/Home/SettingForSlider";
 import {
   getCategoryById,
   getProductById,
   getProductByCategory,
 } from "../API/Networking";
-import Dialog from "../Components/Dialog";
-import ConfirmDialog from "../Components/ConformDialog";
-import Rating from "../Components/DetailProduct/Rating/Rating";
-import Slider from "react-slick";
-import { UserContext } from "../Context/UserContext/UserContext";
 import {
   getListImages,
   getProductFromCart,
   postItemToCart,
   putItemInCart,
+  postToLoveList,
+  getProductFromLoveList,
 } from "../API/Server";
-import { PopupAddProductToCart } from "../Components/Cart/Popup";
-import {
-  SampleNextArrow,
-  SamplePrevArrow,
-} from "../Components/Home/SettingForSlider";
-import Grid from "../Components/Grid";
-import { default as Pro } from "../Components/Home/Product";
-import { CartContext } from "../Context/CartContext/CartContext";
+
 const Product = (props) => {
-  const { token, userData } = useContext(UserContext);
-  const {getCartInformation} = useContext(CartContext)
+  const { getCartInformation } = useContext(CartContext);
   const [product, setProduct] = useState("");
   const [counter, setCounter] = useState(1);
   const productId = props.match.params.slug;
@@ -34,27 +34,19 @@ const Product = (props) => {
   const [thumnail, setThumnail] = useState("");
   const [tonTai, setTonTai] = useState(false);
   const [product_Exist, setProduct_Exist] = useState("");
-  const [quantityOfCart, setQuantityOfCart] = useState(0);
-  const [listData, setListData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [cate, setCate] = useState("UNDEFIED");
   const [productRecommend, setProductRecommend] = useState([]);
-  const [notify, setNotify] = useState({
-    isOpen: false,
-    message: "",
-    type: "",
-  });
+  const [isLoveExist, setIsLoveExist] = useState(false);
+  const [isLove, setIsLove] = useState(false);
+  const [isLoveID, setIsLoveID] = useState("");
+  const [numRating, setNumRating] = useState(0);
+  const [startPoint, setStartPoint] = useState(0);
 
-  const [confirmDialog, setConfirmDialog] = useState({
-    isOpen: false,
-    title: "",
-    subTitle: "",
-  });
-
-  const formatNumber = (number) => {
-    return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const numberRating = (sumValue, numberRating) => {
+    setNumRating(numberRating);
+    setStartPoint(sumValue / numberRating);
   };
-
   const settings = {
     dots: true,
     infinite: false,
@@ -69,7 +61,6 @@ const Product = (props) => {
   const fetchProductFromCart = () => {
     try {
       const id = localStorage.getItem("id");
-      const tokens = localStorage.getItem("token");
       getProductFromCart(id, "")
         .then((items) => {
           items.forEach((item) => {
@@ -81,12 +72,10 @@ const Product = (props) => {
               setProduct_Exist(item);
             }
           });
-          setListData(items);
-          setQuantityOfCart(Object.keys(items).length);
         })
-        .catch((error) => {
-          setListData([]);
-        });
+        .catch((error) => {});
+
+      checkLoveList();
     } catch (e) {
       console.log(e);
     }
@@ -96,7 +85,6 @@ const Product = (props) => {
   const refreshProductFromCart = () => {
     try {
       const id = localStorage.getItem("id");
-      const tokens = localStorage.getItem("token");
       getProductFromCart(id, "")
         .then((items) => {
           items.forEach((item) => {
@@ -104,11 +92,9 @@ const Product = (props) => {
               setTonTai(true);
             }
           });
-          setListData(items);
         })
-        .catch((error) => {
-          setListData([]);
-        });
+        .catch((error) => {});
+      checkLoveList();
     } catch (e) {
       console.log(e);
     }
@@ -121,10 +107,10 @@ const Product = (props) => {
         const tokens = localStorage.getItem("token");
         if (tonTai === false) {
           fetchProductFromCart();
-          postItemToCart(id, tokens, product)
+          postItemToCart(id, tokens, product, counter)
             .then((item) => {
               console.log("Thêm vào giỏ hàng thành công");
-              getCartInformation()
+              getCartInformation();
               refreshProductFromCart();
               setShowPopup(true);
             })
@@ -133,7 +119,7 @@ const Product = (props) => {
             });
         } else if (tonTai === true) {
           fetchProductFromCart();
-          putItemInCart("+", product_Exist, tokens)
+          putItemInCart("+", product_Exist, tokens, 1)
             .then((item) => {
               getCartInformation();
               console.log("Đã update số lượng sản phẩm", product_Exist);
@@ -144,12 +130,80 @@ const Product = (props) => {
             .catch((error) => {
               console.error(`Error is: ${error}`);
             });
+
+          if (counter !== 1) {
+            putItemInCart("+", product_Exist, tokens, counter)
+              .then((item) => {
+                getCartInformation();
+                console.log("Đã update số lượng sản phẩm", product_Exist);
+                //Chỗ này phải so sánh số lượng đang ở trong giỏ hàng của 1 user, nhiều user với tổng số lượng sp
+                refreshProductFromCart();
+                setShowPopup(true);
+              })
+              .catch((error) => {
+                console.error(`Error is: ${error}`);
+              });
+          }
         }
       } catch (e) {
         console.log(e);
       }
     }
     setTonTai(true);
+  };
+
+  const checkLoveList = () => {
+    const id = localStorage.getItem("id");
+    getProductFromLoveList(id)
+      .then((list) => {
+        if (Object.keys(list).length === 0) {
+          setIsLoveExist(false);
+        } else {
+          list.forEach((item) => {
+            if (item.product_id == productId) {
+              console.log("ụa là có chạy vô đây ko");
+
+              console.log("item.id", item.id);
+              console.log("item.productid", item.product_id);
+              console.log("productid", productId);
+              setIsLove(true);
+              setIsLoveID(item.id);
+            }
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(`Error is: ${error}`);
+      });
+  };
+
+  const handleLoveList = () => {
+    const id = localStorage.getItem("id");
+    const tokens = localStorage.getItem("token");
+    if (!isLoveExist) {
+      postToLoveList(id, tokens, productId)
+        .then((result) => {
+          setIsLove(true);
+          setIsLoveExist(true);
+          setIsLoveID(result.id);
+
+          console.log("Thêm vào love list thành công 1");
+        })
+        .catch((error) => {
+          console.error(`Error is: ${error}`);
+        });
+
+      checkLoveList();
+    }
+  };
+
+  //Khi bấm dấu + hoặc - thì filter trong Cart với user_id và product_id
+  const btnPlus = () => {
+    setCounter(counter + 1);
+  };
+
+  const btnSub = () => {
+    setCounter(counter - 1);
   };
 
   useEffect(() => {
@@ -217,13 +271,13 @@ const Product = (props) => {
               </div>
               <div className="detailProduct__container__content__slidebar">
                 <div className="detailProduct__container__content__slidebar__space">
-                  Nhận xét
+                 {numRating} Nhận Xét
                 </div>
                 <div className="detailProduct__container__content__slidebar__space">
-                  Đánh giá
+                  {startPoint} Đánh Giá
                 </div>
                 <div className="detailProduct__container__content__slidebar__space">
-                  Đã bán
+                  {product.sold} Đã Bán 
                 </div>
               </div>
               <div className="detailProduct__container__content__price">
@@ -234,13 +288,19 @@ const Product = (props) => {
                   Số Lượng:
                 </div>
                 <div className="detailProduct__container__content__quantityContainer__quantity">
-                  <button className="detailProduct__container__content__quantityContainer__quantity__sign cursor">
+                  <button
+                    onClick={btnSub}
+                    className="detailProduct__container__content__quantityContainer__quantity__sign cursor"
+                  >
                     -
                   </button>
                   <button className="detailProduct__container__content__quantityContainer__quantity__counter">
                     {counter}
                   </button>
-                  <button className="detailProduct__container__content__quantityContainer__quantity__sign cursor">
+                  <button
+                    onClick={btnPlus}
+                    className="detailProduct__container__content__quantityContainer__quantity__sign cursor"
+                  >
                     +
                   </button>
                 </div>
@@ -293,13 +353,24 @@ const Product = (props) => {
                   Chia sẻ
                 </button>
 
-                <button
-                  className="btn detailProduct__container__content__spaceContainer__whiteBtn"
-                  type="button"
-                >
-                  <i className="bx bxs-like"></i>
-                  Thêm vào danh sách yêu thích
-                </button>
+                {!isLove ? (
+                  <button
+                    onClick={handleLoveList}
+                    className="btn detailProduct__container__content__spaceContainer__whiteBtn"
+                    type="button"
+                  >
+                    <i className="bx bxs-heart"></i>
+                    Thêm vào danh sách yêu thích
+                  </button>
+                ) : (
+                  <button
+                    className="btn detailProduct__container__content__spaceContainer__whiteBtn"
+                    type="button"
+                  >
+                    <i className="bx bxs-heart"></i>
+                    Đã yêu thích
+                  </button>
+                )}
               </div>
 
               <div style={{ marginTop: 30, display: "flex" }}>
@@ -398,14 +469,12 @@ const Product = (props) => {
         </div>
 
         <div className="detailProduct__container--big">
-          <Rating id={productId} name={product.name}/>
+          <Rating
+            id={productId}
+            name={product.name}
+            numberRating={numberRating}
+          />
         </div>
-
-        <Dialog notify={notify} setNotify={setNotify} />
-        <ConfirmDialog
-          confirmDialog={confirmDialog}
-          setConfirmDialog={setConfirmDialog}
-        />
       </div>
       <div>
         <div className="detailProduct__container--right">
@@ -515,28 +584,27 @@ const Product = (props) => {
             ></div>
           </div>
           <Grid col={1} mdCol={1} smCol={1} gap={10}>
-            {productRecommend.length>5?
-            productRecommend.slice(0,5).map((item, index) => (
-              <Link to={`/product/${item.id}`} key={index}>
-                <Pro
-                  src={item.imagepresent}
-                  name={item.name}
-                  price={item.price}
-                  sale={item.sold}
-                />
-              </Link>
-            )) :
-            productRecommend.map((item, index) => (
-              <Link to={`/product/${item.id}`} key={index}>
-                <Pro
-                  src={item.imagepresent}
-                  name={item.name}
-                  price={item.price}
-                  sale={item.sold}
-                />
-              </Link>
-            ))
-          }
+            {productRecommend.length > 5
+              ? productRecommend.slice(0, 5).map((item, index) => (
+                  <Link to={`/product/${item.id}`} key={index}>
+                    <Pro
+                      src={item.imagepresent}
+                      name={item.name}
+                      price={item.price}
+                      sale={item.sold}
+                    />
+                  </Link>
+                ))
+              : productRecommend.map((item, index) => (
+                  <Link to={`/product/${item.id}`} key={index}>
+                    <Pro
+                      src={item.imagepresent}
+                      name={item.name}
+                      price={item.price}
+                      sale={item.sold}
+                    />
+                  </Link>
+                ))}
           </Grid>
         </div>
       </div>
@@ -544,7 +612,8 @@ const Product = (props) => {
         trigger={showPopup}
         setTrigger={() => setShowPopup(false)}
       >
-        <p>Sản phẩm đã được thêm vào Giỏ hàng</p>
+        <div>Sản phẩm đã được thêm vào Giỏ hàng</div>
+
       </PopupAddProductToCart>
     </div>
   );

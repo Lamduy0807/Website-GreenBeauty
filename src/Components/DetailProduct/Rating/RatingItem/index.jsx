@@ -34,7 +34,7 @@ export const RatingItem = ({ item, name }) => {
           <span className="product-rating__author-name">{user.name}</span>
           <span className="product-rating__name">{name}</span>
           </div>
-          <div className="product-rating__time">{item.dayandtime}</div>
+          <div className="product-rating__time">{item.dayandtime.substring(11,16)} {item.dayandtime.substring(0,10)}</div>
         </div>
 
         <div className="product-rating__content">{item.ratingcomment}</div>

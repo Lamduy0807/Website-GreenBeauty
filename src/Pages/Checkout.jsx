@@ -17,15 +17,13 @@ export const Checkout = (props) => {
 
   const location = useLocation();
   const listData = location.state;
-  const [total, setTotal] = useState(0);
+  const totalCash=location.totalCash;
   const [delivery, setDelivery] = useState("");
   const [listOrderDetail, setListOrderDetail] = useState([]);
-  const [orderID, setOrderID] = useState(null);
 
   const fetchDelivery = () => {
     getAddressDelivery(token, userData.id, 1).then((address) => {
       address.forEach((_address) => {
-        // console.log(_address)
         setDelivery(_address);
       });
     });
@@ -33,13 +31,12 @@ export const Checkout = (props) => {
 
   const btnConfirmOrder = () => {
     // console.log('delivery:', delivery.id)
-    postOrder(token, userData.id, total, delivery.id)
+    postOrder(token, userData.id, totalCash, delivery.id)
       .then((result) => {
         listOrderDetail.forEach((item) => {
           postOrderDetail(result.id, item.product_id, item.quantity)
             .then((res) => {
               console.log("orderID:", result.id);
-              setOrderID(result.id);
             })
             .catch((error) => {
               console.error(`Error is: ${error}`);
@@ -124,7 +121,7 @@ export const Checkout = (props) => {
                 Tổng tiền hàng:
               </div>
               <div className="checkout__footer__check__row--value">
-                {formatNumber("210000")} đ
+                {formatNumber(totalCash+'')} đ
               </div>
             </div>
         </div>
@@ -144,7 +141,7 @@ export const Checkout = (props) => {
                 Tổng thanh toán:
               </div>
               <div className="checkout__footer__check__row--value checkout__footer__check__row--value--big">
-                {formatNumber("210000")} đ
+                {formatNumber(totalCash+'')} đ
               </div>
             </div>
         </div>
@@ -152,7 +149,7 @@ export const Checkout = (props) => {
           <div className="checkout__footer__order__warning">
           Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo 
             <div className="checkout__footer__order__warning--faq">
-            Điều khoản GreenBeauty
+          Điều khoản GreenBeauty
             </div> 
           </div>
           <button className="cartScreen__buy__right__button" onClick={btnConfirmOrder}>Đặt hàng</button>
