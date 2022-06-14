@@ -56,6 +56,7 @@ const Rating = (props) => {
     fetchAPIListRating(props.id);
   }, [props.id]);
   return (
+    props.numberRating(sumValue,numberRating),
     <div className="rating">
       <h4 className="rating__header">ĐÁNH GIÁ SẢN PHẨM</h4>
       <div className="rating__overview">

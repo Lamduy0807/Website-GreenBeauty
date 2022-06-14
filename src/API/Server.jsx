@@ -14,6 +14,7 @@ async function getListImages(productId) {
   }
 }
 
+
 //---
 async function getListRating(productId) {
   const apiGetListRating =
@@ -64,7 +65,8 @@ async function getDataUser(userData, accessToken) {
 
 //---
 //Api thêm item vào giỏ hàng
-async function postItemToCart(userData, accessToken, product) {
+async function postItemToCart(userData, accessToken, product, counter) {
+  console.log("productID:", product.id)
   const apiAddItemToCart = "http://" + SERVER_NAME + "/cart/";
   try {
     let response = await fetch(apiAddItemToCart, {
@@ -76,7 +78,7 @@ async function postItemToCart(userData, accessToken, product) {
       },
 
       body: JSON.stringify({
-        quantities: 1,
+        quantities: counter,
         product: product.id,
         user: userData,
       }),
@@ -91,13 +93,13 @@ async function postItemToCart(userData, accessToken, product) {
 
 ///---
 //Api cập nhật số lượng khi thêm sản phẩm
-async function putItemInCart(event, product, accessToken) {
+async function putItemInCart(event, product, accessToken, counter) {
   console.log("product:", product);
   const apiUpdateQuantity =
     "http://" + SERVER_NAME + "/cart/" + product.id + "/";
   let quantity = product.quantities;
   if (event === "+") {
-    quantity = quantity + 1;
+    quantity = quantity + counter;
   } else if (event === "-") {
     quantity = quantity - 1;
   }
@@ -213,6 +215,45 @@ async function deleteProductFromCart(cart_id) {
 }
 
 
+async function postToLoveList(userID,userToken, product_id) {
+  const apiAddToLoveList = 'http://' + SERVER_NAME + '/lovelist/';
+  try {
+    let response = await fetch(apiAddToLoveList, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userToken,
+      },
+
+      body: JSON.stringify({
+        product_id: product_id,
+        customer_id: userID,
+      }),
+    });
+
+    let responseJson = await response.json();
+    //console.log("responseJson:", responseJson)
+    return responseJson;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
+
+
+async function getProductFromLoveList(user_id) {
+  const apiGetProductFromLoveList =
+    'http://' + SERVER_NAME + '/lovelist/?customer_id=' + user_id;
+
+  try {
+    let response = await fetch(apiGetProductFromLoveList, {method: 'GET'});
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(`Error is: ${error}`);
+  }
+}
+
 export {
   getListImages,
   getListRating,
@@ -224,4 +265,6 @@ export {
   postOrder,
   postOrderDetail,
   deleteProductFromCart,
+  postToLoveList,
+  getProductFromLoveList
 };

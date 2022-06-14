@@ -29,7 +29,6 @@ export const toSlug = (stri)=>
     return str;
 }
 
-
 export const formatNumber=(number)=>{
     return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

@@ -44,7 +44,9 @@ const LoveList = () => {
               {product.map((item, index) => {
                 return (
                   <LoveProduct
+
                     key={index}
+                    id={item.id}
                     imagepresent={item.imagepresent}
                     brand={item.brand}
                     name={item.name}
